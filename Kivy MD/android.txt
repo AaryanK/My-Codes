@@ -1,0 +1,3 @@
+title=Aaryan's App
+author=Aaryan
+orientation=portrait|landscape

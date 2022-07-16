@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+
+
+{%block title%}Sign up{%endblock title%}
+{%block body%}
+<div class="notification area">
+  {%if messages%}
+  <div id="error">
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed mt-2 mx-2" role="alert" style="width: 1902px">
+  <strong class="font-bold">Error : </strong>
+  <span class="block sm:inline">{%for message in messages%} {{message}} {%endfor%}</span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="closeerror()">
+  <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+  </span>
+  <script type="text/javascript">
+    function closeerror(){
+      console.log("hello")
+      document.getElementById('error').remove()
+    }
+  </script>
+  </div>
+  {%endif%}
+</div>
+</div>
+
+<div class="lg:flex flex justify-center pt-20">
+            <div class="lg:w-1/2 xl:max-w-screen-sm">
+                <div class="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12 ">
+                    <div class="flex pl-40">
+                        <div>
+                            <img src="https://antuhilltravels.com.np/wp-content/themes/antu-main/img/logo.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+                    <h2 class="text-center text-4xl text-green-700 font-display font-semibold lg:text-left xl:text-5xl
+                    xl:text-bold">Signup</h2>
+                    <div class="mt-12">
+                        <form method="POST">
+                          {%csrf_token%}
+                            <div>
+                                <div class="text-sm font-bold text-green-700 tracking-wide">Email Address</div>
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600 text-blue-600" type="email" placeholder="your email here" name="email" required>
+                            </div>
+                            <div class="mt-8">
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm font-bold text-green-700 tracking-wide">
+                                        Password
+                                    </div>
+                                </div>
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600 text-blue-600" type="password" placeholder="Enter your password" name="password" required>
+                            </div>
+                            <div class="mt-8">
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm font-bold text-green-700 tracking-wide">
+                                        Confirm Password
+                                    </div>
+                                </div>
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600 text-blue-600" type="password" placeholder="Confirm your password" name="password" required>
+                            </div>
+                            <div class="mt-10">
+                                <button class="bg-orange-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-blue-600
+                                shadow-lg">
+                                    Log In
+                                </button>
+                            </div>
+                        </form>
+                        <div class="mt-12 text-sm font-display font-semibold text-center">
+                            Have an account ? <a class="cursor-pointer text-blue-600 hover:text-indigo-800">Log In?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{%endblock body%}

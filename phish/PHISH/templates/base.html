@@ -1,0 +1,87 @@
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Squada+One&display=swap" rel="stylesheet">
+<link rel="icon" href="https://i.ibb.co/JHncRmP/NB.png" type="image/png">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<title>{%block title%}{%endblock title%} | NayBus</title>
+
+
+{%load static%}
+
+<script type="text/javascript">
+  console.log("{{maintainance}}")
+</script>
+<style>
+  .mdml-4{
+    color: #f2f2f2;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+  }
+
+  .mdml-4 a{
+    color: white !important;
+  }
+  
+
+</style>
+{%if 'dashboard' in request.path or 'learn' in request.path or 'maintainance' in request.path%}
+<p></p>
+{%else%}
+<header class="border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-4" style="background-color: black; color: bisque;" id="Mynav">
+  
+  <!-- Logo text or image -->
+  <div class="flex items-center justify-between mb-4 md:mb-0">
+    <h1 class="leading-none text-2xl text-grey-darkest">
+      <a class="no-underline text-grey-darkest hover:text-black" href="/" style="color: azure;font-family: squada one;">
+        NayBus
+      </a>
+    </h1>
+
+    <a class="text-black hover:text-orange md:hidden" href="#">
+      <i class="fa fa-2x fa-bars"></i>
+    </a>
+  </div>
+  <!-- END Logo text or image -->
+  
+  <!-- Search field -->
+  <!-- END Search field -->
+  
+  <!-- Global navigation -->
+  <nav>
+    <ul class="list-reset md:flex md:items-center white">
+      <li class="mdml-4">
+        <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#welcome">
+          About
+        </a>
+      </li>
+      <li class="mdml-4">
+        <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
+          Contact
+        </a>
+      </li>
+      <li class="mdml-4">
+        <a class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="/register">
+          Register Now
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- END Global navigation -->
+
+</header>
+{%endif%}
+<script src="{%static 'js/tippy.all.min.js'%}"></script>  
+    <script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{%static 'js/uikit.js'%}"></script>
+    <script src="{%static 'js/simplebar.min.js'%}"></script>
+    <script src="{%static 'js/custom.js'%}"></script>
+    <script src="{%static 'js/bootstrap-select.min.js'%}"></script>
+{%block body%}
+{%endblock body%}
+<script type="text/javascript">
+  document.getElementById("Mynav").style.Width = screen.Width;
+</script>

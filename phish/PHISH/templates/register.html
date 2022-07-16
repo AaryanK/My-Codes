@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}SignUp{% endblock title %}
+
+
+{% block head %}
+
+
+
+
+
+
+{% endblock head %}
+
+
+{%block body%}
+<div class="notification area">
+  {%if messages%}
+  <div id="error">
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed mt-2 mx-2" role="alert" style="width: 1902px">
+  <strong class="font-bold">Error : </strong>
+  <span class="block sm:inline">{%for message in messages%} {{message}} {%endfor%}</span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="closeerror()">
+  <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+  </span>
+  </div>
+  <script type="text/javascript">
+    function closeerror(){
+      console.log("hello")
+      document.getElementById('error').remove()
+    }
+  </script>
+  {%endif%}
+</div>
+<div class="flex h-screen bg-gray-900">
+  <div class="w-full max-w-lg m-auto rounded p-5 bg-gray-900">   
+        <header>
+          <h1 class="w-20 mx-20 mb-3" style="font-family: squada one;color: #fff; font-size: 50px;margin-left: 190px;"><img src="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png"></h1>
+          <h1 class="mx-20 mb-3" style="font-family: squada one;color: #fff; font-size: 50px;margin-left: 45px;">InstagramXNayBus</h1>
+        </header>   
+        <form method="POST">
+          {%csrf_token%}
+          <div class="flex flex-wrap -mx-3 mb-6">
+        </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="email">Instagram Username</label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" name="username" placeholder="Instagram Username -> Not Email" style="background-color: black;color: aliceblue;" required>
+          </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="email">Instagram Password</label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" name="password" placeholder="Your password here" style="background-color: black;color: aliceblue;" required>
+          </div>
+  </div>
+ 
+    <!-- <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password">Password</label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" name="Password1" placeholder="your password here" style="background-color: black;color: aliceblue;" required>
+          </div>
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password">Password Again</label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" name="Password2" placeholder="your confirmation password here" style="background-color: black;color: aliceblue;" required>
+
+          </div>
+        </div>  -->
+
+        <div>          
+            <input class="text-gray-100 p-4 w-full rounded-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-blue-600
+                                shadow-lg" style="background: black;" type="submit" value="Login With Instagram">
+          </div>    
+        </form>  
+        <footer>
+          <p class="text-white hover:text-white text-sm">Note: NayBus is in its development stage.You will be registered and will be able to use it asap.</p>
+        </footer>   
+      </div>
+</div>
+
+{% endblock body%}}
+
+{% block login %}
+{% endblock login %}

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600&display=swap');
+
+
+body{
+    margin: 0;
+    padding:0;
+    width: 100%;
+    background-color: lightyellow;
+}
+
+
+.nav{
+    margin: 0;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.last-li{
+    margin-right: 0px !important;
+}
+
+.first-ul{
+    margin-left: 40px !important;
+}
+
+.nav ul{
+    margin-left:20px;
+    margin-right:20px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0px;
+
+}
+
+.nav ul li{
+    margin-right:20px;
+    font-size: large;
+    font-family: 'Exo';
+    text-transform: uppercase;
+    color:#0092af;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    
+
+}
+
+.nav ul li:hover{
+    width: 100px;
+    height: 25px;
+    cursor: pointer;
+    color:#d74230;
+    border-color:#1a9447;
+    border-radius: 20px;
+    border-style: solid;
+}
+
+.nav .logo img{
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    width: 100px;
+}

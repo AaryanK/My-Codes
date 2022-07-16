@@ -1,0 +1,68 @@
+{%load static%}
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="{%static '/images/LOGOS/office_logo.png'%}" type="image/x-icon">
+
+        <!--=============== REMIX ICONS ===============-->
+        
+        <!-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"> -->
+
+        <!--=============== SWIPER CSS ===============-->
+        <link rel="stylesheet" href="">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{%static 'css/base.css'%}">
+
+         <!--=============== MAIN JS ===============-->
+         <script src="{%static 'js/base.js'%}"></script>
+
+        <title>{%block title%}{%endblock title%} | AHT</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <div class="nav">
+          <ul>
+            <li><a href=""></a>AHT</li>
+            <li class="last-li"><a href=""></a>Book</li>
+
+          </ul>
+          <div class="logo"><img src="{%static '/images/LOGOS/office_logo.png'%}" alt="" srcset=""></div>
+
+          <ul class="first-ul">
+            <li><a href=""></a>Status</li>
+            <li><a href=""></a>Login</li>
+          </ul>
+        </div>
+
+        {%block body%}
+        {%endblock body%}
+
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            
+        </footer>
+
+
+        <!--========== SCROLL UP ==========-->
+
+
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src=""></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src=""></script>
+
+        <!--=============== MIXITUP JS ===============-->
+        <script src=""></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="{%static 'js/base.js'%}"></script>
+    </body>
+</html>

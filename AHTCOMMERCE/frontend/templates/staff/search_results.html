@@ -1,0 +1,84 @@
+{%extends 'staff/search_flights.html'%}
+
+{%block table%}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<div class="container">
+<table class="table sm-1/2 table-dark">
+    <thead>
+      <tr>
+        <th scope="col">SN.</th>
+        <th scope="col">Airline</th>
+        <th scope="col">Flight Number</th>
+        <th scope="col">Ticket Class</th>
+        <th scope="col">Time</th>
+        <th scope="col">Maximum Number of Seats Available</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+
+
+      </tr>
+</thead>
+
+<tbody>
+        {%if api_response%}
+        {%for i in api_response%}
+        <tr class="table-dark">
+        {%if i.Maximum_Seats == demanded or i.Maximum_Seats > demanded%}
+        <th scope="row">{{forloop.counter}}</th>
+        <!-- <input type="hidden" name="Airline" value="{{i.Airline}}">
+        <input type="hidden" name="Flight Number" value="{{i.Flight_Number}}">
+        <input type="hidden" name="Class" value="{{i.Class}}"> -->
+        
+
+        <td>{{i.Airline}}</td>
+        <td>{{i.Flight_Number}}</td>
+        <td>{{i.Class}}</td>
+        <td>{{i.Time}}</td>
+        <td>{{i.Maximum_Seats}}</td>
+        <td>{{i.Unit_Price}} NPR</td>
+        <td><button type="submit" class="btn btn-outline-success hold">Hold</button></td>
+        {%endif%}
+      </tr>
+      {%endfor%}
+      {%else%}
+      All flights are ticketed
+      {%endif%}
+
+    </tbody>
+  </table>
+  <script>
+
+    $(document).ready(function(){
+    var button = $(".hold");
+    button.on('click',function(e){
+      var Airline = ($(this)).parent('td').parent('tr').children('td')[0].textContent;
+      var Flight_Number = ($(this)).parent('td').parent('tr').children('td')[1].textContent;
+      var Class = ($(this)).parent('td').parent('tr').children('td')[2].textContent;
+      var Time = ($(this)).parent('td').parent('tr').children('td')[3].textContent;
+      var Unit_Price = ($(this)).parent('td').parent('tr').children('td')[5].textContent;
+      // console.log(Unit_Price)
+      ($(this)).parent('td').parent('tr').append('<input type="hidden" name="Airline" id="Airline"><input type="hidden" name="Flight_Number" id="Flight_Number"><input type="hidden" name="Class" id="Class"><input type="hidden" name="Time" id="Time"><input type="hidden" name="Unit_Price" id="Unit_Price">')
+      $("#Airline").val(Airline)
+      $("#Flight_Number").val(Flight_Number)
+      $("#Class").val(Class)
+      $("#Time").val(Time)
+      $("#Unit_Price").val(Unit_Price)
+
+
+      document.getElementById('Airline').val[Airline];
+      document.getElementById('Flight_Number').value = Flight_Number;
+      document.getElementById('CLass').value = Class;
+      document.getElementById('Time').value = Time;
+      document.getElementById('Unit_Price').value = Unit_Price;
+
+
+
+      
+
+    })
+    })
+  </script> 
+  
+</div>
+{%endblock table%}
+

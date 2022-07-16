@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}SignUp{% endblock title %}
+{% load static %}
+
+{% block head %}
+
+
+
+
+
+
+{% endblock head %}
+
+
+{%block body%}
+<div class="notification area">
+  {%if messages%}
+  <div id="error">
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed mt-2 mx-2" role="alert" style="width: 1902px">
+  <strong class="font-bold">Error : </strong>
+  <span class="block sm:inline">{%for message in messages%} {{message}} {%endfor%}</span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="closeerror()">
+  <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+  </span>
+  </div>
+  <script type="text/javascript">
+    function closeerror(){
+      console.log("hello")
+      document.getElementById('error').remove()
+    }
+  </script>
+  {%endif%}
+</div>
+<div class="flex h-screen bg-gray-900">
+  <div class="w-full max-w-lg m-auto rounded p-5 bg-gray-900">   
+        <header>
+        <script>
+            console.log("{{profile_pic}}{{name}}")
+        </script>
+        <img style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="{%static 'Images/image.png'%}">
+          <h1 class="text-lg my-10" style="font-family: squada one;color: #fff;font-size:25px;margin-left: 50px;">Thankyou {{username}} for registering</h1>
+        </header>   
+        <footer>
+          <h1 class="text-white hover:text-white text-lg">{{name}} Thankyou for registering you will be notified soon.For more info please email us at assist.naybus@nay.com</h1>
+        </footer>   
+      </div>
+</div>
+
+{% endblock body%}}
+
+{% block login %}
+{% endblock login %}

@@ -1,0 +1,936 @@
+<script src="/Scripts/FileSaver.js"></script>
+<script>
+    function fnExcelReport(id, name) {
+        var tab_text = '<html xmlns: x="urn:schemas-microsoft-com:office:excel">';
+        tab_text = tab_text + '<head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet>';
+        tab_text = tab_text + '<x: Name>Test Sheet</x: Name>';
+        tab_text = tab_text + '<x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > ';
+        tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+        tab_text = tab_text + "<table class="+'table table-bordered'+" border='3px solid black' style='color:black'>";
+
+
+        var exportTable = $('#' + id).clone();
+        //exportTable.find('th').last().remove();
+        exportTable.find('input').each(function (index, elem) { $(elem).remove(); });
+        exportTable.find('a').each(function (index, elem) { $(elem).remove(); });
+        tab_text = tab_text + exportTable.html();
+        tab_text = tab_text + '</table></body></html>';
+        var fileName = "Report" + '.xls';
+
+        //Save the file
+        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel;charset=utf-8" })
+        window.saveAs(blob, fileName);
+    }
+</script>
+<div class="main-content">
+<form action="/Dashboard" method="get">        <div class="bg-gray search">
+            <div class="bg-darkgreen">
+                <h3>Search Options</h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 pt-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-md-4">
+                            <p>Sales Date From</p>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" id="fromDate" name="fromDate" class="form-control EngDate" required="required"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-4">
+                            <p>Sales Date To</p>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" id="toDate" name="toDate" class="form-control EngDate"  required="required" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" name="btnRunReport" value="Run Report" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+</form>
+<section class="report">
+    <div class="bg-darkgreen ">
+        <h3>Consolidated Report</h3>
+    </div>
+        <div class="row">
+    <div class="col-md-1 pull-right" style="margin-right:38px;">
+        <button class="btn btn-success" onclick="javascript: fnExcelReport('table_id1', 'data')">
+            <i class="fas fa-file-excel"></i> Export
+        </button>
+    </div>
+</div>
+        <div class="table-responsive" style="font-size:11px;">
+            <table id="table_id1" class="table" style="border:0px solid transparent;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <p>Sales Report of: antu</p>
+                                    <p>Transaction Date From: 2022-05-10    To:  2022-05-27</p>
+                                    <p>Total Payable Amount For This Period Is: <span id="total1"></span> (Sales + Fee + Reschedule - Refund)</p>    
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" border="1" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-darkgreen">
+                                                <td></td>
+                                                <td colspan="14" class="text-white">SALES</td>
+                                            </tr>
+                                            <tr style="font-weight:bold">
+                                                <th>S.No</th>
+                                                <th>Ticket #</th>
+                                                <th>PNR #</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Trn. Date</th>
+                                                <th>Flt. Date</th>
+                                                <th>Sector</th>
+                                                <th>CLS</th>
+                                                <th>Cur</th>
+                                                <th>Fare</th>
+                                                <th>Fsc</th>
+                                                <th>Psc</th>
+                                                <th>Com</th>
+                                                <th>Net</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>9992106627008</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MR SHIVAM AGRAWAL</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>9992106627009</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MS SAMPRIYARAJ BHANDARE</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>9992106627010</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MS POOJAMARIA FERNANDES</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>9992106627011</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MS SHAMANIPARAG JOSHI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>9992106627012</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MS RASHIRAJESH RAJGARHIA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>9992106627013</td>
+                                                        <td>A3WGZS</td>
+                                                        <td width="40%">MR SHRYANSH SHETHIA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-12</td>
+                                                        <td width="8%">PKR-KTM</td>
+                                                        <td align="right">G</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2345.00</td>
+                                                        <td align="right">2475.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">234.50</td>
+                                                        <td align="right">4785.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>9992106628343</td>
+                                                        <td>A3WI57</td>
+                                                        <td width="40%">MRS SHOVA THAPA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-10</td>
+                                                        <td width="10%">2022-05-11</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">6295.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">6295.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>9992106636680</td>
+                                                        <td>A3WOZN</td>
+                                                        <td width="40%">MR NAYAN CHHETRI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-14</td>
+                                                        <td width="10%">2022-05-18</td>
+                                                        <td width="8%">BDP-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>9992106640838</td>
+                                                        <td>A3WSHO</td>
+                                                        <td width="40%">MASTER ADHYYAN CHAUDHARY</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">JKR-KTM</td>
+                                                        <td align="right">S</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">1425.00</td>
+                                                        <td align="right">2005.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">3430.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>9992106640839</td>
+                                                        <td>A3WSHO</td>
+                                                        <td width="40%">MRS CHERIDEVI CHAUDHARY</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">JKR-KTM</td>
+                                                        <td align="right">S</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">1425.00</td>
+                                                        <td align="right">2005.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">3430.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td>9992106640840</td>
+                                                        <td>A3WSHO</td>
+                                                        <td width="40%">MR MITHILESHKUMAR CHAUDHARY</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">JKR-KTM</td>
+                                                        <td align="right">S</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">1425.00</td>
+                                                        <td align="right">2005.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">3430.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12</td>
+                                                        <td>9992106640841</td>
+                                                        <td>A3WSHO</td>
+                                                        <td width="40%">MISS RISHIKA CHAUDHARY</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">JKR-KTM</td>
+                                                        <td align="right">S</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">1425.00</td>
+                                                        <td align="right">2005.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">3430.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>13</td>
+                                                        <td>9992106641807</td>
+                                                        <td>A3WYPL</td>
+                                                        <td width="40%">MS HIMKALA BHANDARI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>9992106641808</td>
+                                                        <td>A3WYPL</td>
+                                                        <td width="40%">MR SUBHANG BHANDARI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>15</td>
+                                                        <td>9992106641809</td>
+                                                        <td>A3WYPL</td>
+                                                        <td width="40%">MS ROSHANI PRASAI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>16</td>
+                                                        <td>9992106641810</td>
+                                                        <td>A3WYPL</td>
+                                                        <td width="40%">MS ANU THAPALIYA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>17</td>
+                                                        <td>9992106641811</td>
+                                                        <td>A3WYS8</td>
+                                                        <td width="40%">MS ERA THAPALIYA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>18</td>
+                                                        <td>9992106641812</td>
+                                                        <td>A3WYS8</td>
+                                                        <td width="40%">MR KABINDRA THAPALIYA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>19</td>
+                                                        <td>9992106641813</td>
+                                                        <td>A3WYS8</td>
+                                                        <td width="40%">MS REYA THAPALIYA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>20</td>
+                                                        <td>9992106641814</td>
+                                                        <td>A3WT51</td>
+                                                        <td width="40%">MS ESHANI UPRETI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>21</td>
+                                                        <td>9992106641815</td>
+                                                        <td>A3WT51</td>
+                                                        <td width="40%">MS SHRENA UPRETI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>22</td>
+                                                        <td>9992106641947</td>
+                                                        <td>A3WTAX</td>
+                                                        <td width="40%">MR OMPRAKASH KHANDELWAL</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-15</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">BWA-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4100.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4100.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>23</td>
+                                                        <td>9992106643816</td>
+                                                        <td>A3WUZX</td>
+                                                        <td width="40%">MR ANKIT CHAUDHARY</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-16</td>
+                                                        <td width="10%">2022-05-17</td>
+                                                        <td width="8%">JKR-KTM</td>
+                                                        <td align="right">N</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">2915.00</td>
+                                                        <td align="right">2005.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">291.50</td>
+                                                        <td align="right">4828.50</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>24</td>
+                                                        <td>9992106652110</td>
+                                                        <td>A3X1EM</td>
+                                                        <td width="40%">MR DILIPKUMAR SINGH</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-18</td>
+                                                        <td width="10%">2022-05-18</td>
+                                                        <td width="8%">KTM-BIR</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">3600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">3600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>25</td>
+                                                        <td>9992106652569</td>
+                                                        <td>A3X1QZ</td>
+                                                        <td width="40%">MISS SIMRANLUNGELI MAGAR</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-18</td>
+                                                        <td width="10%">2022-05-19</td>
+                                                        <td width="8%">KTM-BIR</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>26</td>
+                                                        <td>9992106658576</td>
+                                                        <td>A3X6CQ</td>
+                                                        <td width="40%">MS RANJU GIRI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-20</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>27</td>
+                                                        <td>9992106658577</td>
+                                                        <td>A3X6CQ</td>
+                                                        <td width="40%">MS EEVANA POUDEL</td>
+                                                        <td>CHD</td>
+                                                        <td width="10%">2022-05-20</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>28</td>
+                                                        <td>9992106658578</td>
+                                                        <td>A3X6CQ</td>
+                                                        <td width="40%">MRS GYATRIDEVI POUDEL</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-20</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>29</td>
+                                                        <td>9992106658579</td>
+                                                        <td>A3X6CQ</td>
+                                                        <td width="40%">MR PREAMPRASAD POUDEL</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-20</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>30</td>
+                                                        <td>9992106658580</td>
+                                                        <td>A3X6CQ</td>
+                                                        <td width="40%">MR RAJAN POUDEL</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-20</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BDP</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">5200.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">5200.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>31</td>
+                                                        <td>9992106664723</td>
+                                                        <td>A3XBIY</td>
+                                                        <td width="40%">MRS GANGADEVI REGMI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-26</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>32</td>
+                                                        <td>9992106664724</td>
+                                                        <td>A3XBIY</td>
+                                                        <td width="40%">MR KULAPRASAD REGMI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-26</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>33</td>
+                                                        <td>9992106664725</td>
+                                                        <td>A3XBIY</td>
+                                                        <td width="40%">MR PRINCE REGMI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-26</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>34</td>
+                                                        <td>9992106664726</td>
+                                                        <td>A3XBIY</td>
+                                                        <td width="40%">MISS SIRJA TIMALSENA</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-26</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>35</td>
+                                                        <td>9992106665204</td>
+                                                        <td>A3XBYE</td>
+                                                        <td width="40%">MR LILA PRASAD REGMI</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-26</td>
+                                                        <td width="8%">BIR-KTM</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>36</td>
+                                                        <td>9992106665291</td>
+                                                        <td>A3XC0L</td>
+                                                        <td width="40%">MR KENISH CHITRAKAR</td>
+                                                        <td>ADULT</td>
+                                                        <td width="10%">2022-05-22</td>
+                                                        <td width="10%">2022-05-23</td>
+                                                        <td width="8%">KTM-BIR</td>
+                                                        <td align="right">E1</td>
+                                                        <td align="right">NPR</td>
+                                                        <td align="right">4600.00</td>
+                                                        <td align="right">0.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">200.00</td>
+                                                        <td align="right">4600.00</td>
+                                                    </tr>
+
+                                            <tr style="text-align: center; font-weight: 600">
+                                                <td></td>
+                                                <td colspan="9">Total</td>
+                                                <td align="right">141480.00</td>
+                                                <td align="right">24875.00</td>
+                                                <td align="right">7200.00</td>
+                                                <td align="right">7498.50</td>
+                                                <td id="net-total">166056.50</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" border="1" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-darkgreen">
+                                                <td></td>
+                                                <td colspan="14" class="text-white">FEE</td>
+                                            </tr>
+                                            <tr style="font-weight:bold">
+                                                <td>S.No</td>
+                                                <td>Ticket #</td>
+                                                <td>PNR #</td>
+                                                <td>Name</td>
+                                                <td>Type</td>
+                                                <td>Trn. Date</td>
+                                                <td>Flt. Date</td>
+                                                <td>Sector</td>
+                                                <td>CLS</td>
+                                                <td>Cur</td>
+                                                <td>Fare</td>
+                                                <td>Fsc</td>
+                                                <td>Psc</td>
+                                                <td>Com</td>
+                                                <td>Net</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr style="text-align: center; font-weight: 600">
+                                                <td></td>
+                                                <td colspan="9">Total</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td id="net-total1">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" border="1" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-darkgreen">
+                                                <td></td>
+                                                <td colspan="14" class="text-white">RESCHEDULE</td>
+                                            </tr>
+                                            <tr style="font-weight:bold">
+                                                <td>S.No</td>
+                                                <td>Ticket #</td>
+                                                <td>PNR #</td>
+                                                <td>Name</td>
+                                                <td>Type</td>
+                                                <td>Trn. Date</td>
+                                                <td>Flt. Date</td>
+                                                <td>Sector</td>
+                                                <td>CLS</td>
+                                                <td>Cur</td>
+                                                <td>Fare</td>
+                                                <td>Fsc</td>
+                                                <td>Psc</td>
+                                                <td>Com</td>
+                                                <td>Net</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr style="text-align: center; font-weight: 600">
+                                                <td></td>
+                                                <td colspan="9">Total</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td id="net-total3">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" border="1" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-darkgreen">
+                                                <td></td>
+                                                <td colspan="14" class="text-white">REFUND</td>
+                                            </tr>
+                                            <tr style="font-weight:bold">
+                                                <td>S.No</td>
+                                                <td>Ticket #</td>
+                                                <td>PNR #</td>
+                                                <td>Name</td>
+                                                <td>Type</td>
+                                                <td>Trn. Date</td>
+                                                <td>Flt. Date</td>
+                                                <td>Sector</td>
+                                                <td>CLS</td>
+                                                <td>Cur</td>
+                                                <td>Fare</td>
+                                                <td>Fsc</td>
+                                                <td>Psc</td>
+                                                <td>Com</td>
+                                                <td>Net</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr style="text-align: center; font-weight: 600">
+                                                <td></td>
+                                                <td colspan="9">Total</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td align="right">0</td>
+                                                <td id="net-total2">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="alert alert-info">
+
+                                        <p id="text">Total Payable Amount : <span id="total"></span> (Sales + Fee + Reschedule - Refund)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+    </section>
+
+        <div class="clearfix"></div>
+    </div>
+
+<script>
+
+    totalPayable();
+
+    function totalPayable() {
+        let nt = Number(document.querySelector('#net-total').innerText);
+        let nt1 = Number(document.querySelector('#net-total1').innerText);
+        let nt2 = Number(document.querySelector('#net-total2').innerText);
+        let nt3 = Number(document.querySelector('#net-total3').innerText);
+
+        let sum = nt + nt1 + nt3 + nt2;
+
+        document.querySelector('#total').innerText = sum;
+        document.querySelector('#total1').innerText = sum;
+        console.log(nt)
+        console.log(sum)
+        console.log(nt1)
+        console.log(nt2)
+
+    }
+</script>
+        </div>
+        <footer>
+        </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+
+
+    <script>
+        $('#table_id').DataTable({
+            dom:'Bfrtip',
+            buttons: [
+                'excel'
+            ]
+        });
+    </script>
+
+</body>
+</html>

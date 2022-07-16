@@ -1,0 +1,177 @@
+{% extends 'base.html' %} 
+{%load static%} {% block title %}Home{% endblock title%} 
+{% block body %}
+
+<script src="{%static 'js/searcher.js'%}"></script>
+<link rel="stylesheet" href="{%static 'css/searcher.css'%}" />
+
+<div class="searcher">
+  <form method="POST">
+    <select class="from-class" aria-label="From" name="FROM" id="FROM">
+      <option value="BDP">
+        <p class="city">Bhadrapur (Jhapa)</p>
+        <p class="sector">BDP</p>
+      </option>
+
+      <option value="BHR">
+        <p class="city">Bharatpur (Chitwan)</p>
+        <p class="sector">BHR</p>
+      </option>
+
+      <option value="BIR">
+        <p class="city">Biratnagar (Morang)</p>
+        <p class="sector">BIR</p>
+      </option>
+
+      <option value="BWA">
+        <p class="city">Bhairahawa (Rupandehi/Butwal)</p>
+        <p class="sector">BWA</p>
+      </option>
+
+      <option value="DHI">
+        <p class="city">Dhangadi (Kailali)</p>
+        <p class="sector">DHI</p>
+      </option>
+
+      <option value="JKR">
+        <p class="city">Janakpur (Dhanusha)</p>
+        <p class="sector">JKR</p>
+      </option>
+
+      <option value="KEP">
+        <p class="city">Nepalgunj (Banke)</p>
+        <p class="sector">KEP</p>
+      </option>
+
+      <option value="KTM">
+        <p class="city">Kathmandu</p>
+        <p class="sector">KTM</p>
+      </option>
+
+      <option value="MTN">
+        <p class="city">Mountain</p>
+        <p class="sector">MTN</p>
+      </option>
+
+      <option value="PKR">
+        <p class="city">Pokhara (Kaski)</p>
+        <p class="sector">PKR</p>
+      </option>
+
+      <option value="RJB">
+        <p class="city">Rajbiraj (Saptari)</p>
+        <p class="sector">RJB</p>
+      </option>
+
+      <option value="SIF">
+        <p class="city">Simara (Birgunj)</p>
+        <p class="sector">SIF</p>
+      </option>
+
+      <option value="SKH">
+        <p class="city">Surkhet</p>
+        <p class="sector">SKH</p>
+      </option>
+
+      <option value="TMI">
+        <p class="city">Tumlingtar (Sankhuwasabha)</p>
+        <p class="sector">TMI</p>
+      </option>
+    </select>
+    <select class="from-class" aria-label="From" name="FROM" id="FROM">
+        <option value="BDP">
+          <p class="city">Bhadrapur (Jhapa)</p>
+          <p class="sector">BDP</p>
+        </option>
+  
+        <option value="BHR">
+          <p class="city">Bharatpur (Chitwan)</p>
+          <p class="sector">BHR</p>
+        </option>
+  
+        <option value="BIR">
+          <p class="city">Biratnagar (Morang)</p>
+          <p class="sector">BIR</p>
+        </option>
+  
+        <option value="BWA">
+          <p class="city">Bhairahawa (Rupandehi/Butwal)</p>
+          <p class="sector">BWA</p>
+        </option>
+  
+        <option value="DHI">
+          <p class="city">Dhangadi (Kailali)</p>
+          <p class="sector">DHI</p>
+        </option>
+  
+        <option value="JKR">
+          <p class="city">Janakpur (Dhanusha)</p>
+          <p class="sector">JKR</p>
+        </option>
+  
+        <option value="KEP">
+          <p class="city">Nepalgunj (Banke)</p>
+          <p class="sector">KEP</p>
+        </option>
+  
+        <option value="KTM">
+          <p class="city">Kathmandu</p>
+          <p class="sector">KTM</p>
+        </option>
+  
+        <option value="MTN">
+          <p class="city">Mountain</p>
+          <p class="sector">MTN</p>
+        </option>
+  
+        <option value="PKR">
+          <p class="city">Pokhara (Kaski)</p>
+          <p class="sector">PKR</p>
+        </option>
+  
+        <option value="RJB">
+          <p class="city">Rajbiraj (Saptari)</p>
+          <p class="sector">RJB</p>
+        </option>
+  
+        <option value="SIF">
+          <p class="city">Simara (Birgunj)</p>
+          <p class="sector">SIF</p>
+        </option>
+  
+        <option value="SKH">
+          <p class="city">Surkhet</p>
+          <p class="sector">SKH</p>
+        </option>
+  
+        <option value="TMI">
+          <p class="city">Tumlingtar (Sankhuwasabha)</p>
+          <p class="sector">TMI</p>
+        </option>
+      </select>
+      <input type="date" name="DATE" id="DATE" class="Date">
+      <select class="nop" aria-label="To" name="Number" id="Number">
+        <option value="1">1</option>
+        
+        <option value="2">2</option>
+        
+        <option value="3">3</option>
+        
+        <option value="4">4</option>
+        
+        <option value="5">5</option>
+        
+        <option value="6">6</option>
+        
+        <option value="7">7</option>
+        
+        <option value="8">8</option>
+        
+        <option value="9">9</option>
+        
+        <option value="10">10</option>
+    </select>
+    <button type="submit" class="submit_button">Search</button>
+  </form>
+</div>
+{% endblock body %}

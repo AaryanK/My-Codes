@@ -1,0 +1,24 @@
+[5577:5577:0510/144458.288748:ERROR:sandbox_linux.cc(374)] InitializeSandbox() called with multiple threads in process gpu-process.
+[5541:5541:0510/144500.152537:INFO:CONSOLE(87)] "Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.", source: https://us04web.zoom.us/csrf_js (87)
+[5541:5541:0510/144504.913048:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5541:5541:0510/144504.913258:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5541:5541:0510/144504.914676:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5579:5591:0510/144506.041937:WARNING:spdy_session.cc(3431)] Received HEADERS for invalid stream 1
+[5579:5591:0510/144506.090083:WARNING:spdy_session.cc(3431)] Received HEADERS for invalid stream 3
+[5579:5591:0510/144506.092610:WARNING:spdy_session.cc(3431)] Received HEADERS for invalid stream 29
+[5579:5591:0510/144506.112636:WARNING:spdy_session.cc(3431)] Received HEADERS for invalid stream 31
+[5541:5541:0510/144506.361689:INFO:CONSOLE(1)] "Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.", source: https://us04web.zoom.us/assets/zm_bundle.js?cache (1)
+[5541:5541:0510/144507.002035:INFO:CONSOLE(1)] "load captcha:web-common042", source: https://us04st3.zoom.us/static/94185/js/app/support/new_captcha.min.js (1)
+[5541:5541:0510/144507.012196:INFO:CONSOLE(1)] "load captcha:web-common028", source: https://us04st3.zoom.us/static/94185/js/app/support/new_captcha.min.js (1)
+[5541:5541:0510/144507.490686:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5541:5541:0510/144507.491199:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5634:15:0510/144508.016992:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 104 to 127
+[5634:15:0510/144508.017170:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 106 to 125
+[5634:15:0510/144508.017280:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 110 to 124
+[5634:15:0510/144508.017375:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 112 to 123
+[5634:15:0510/144508.017471:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 102 to 122
+[5634:15:0510/144508.017612:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 103 to 121
+[5634:15:0510/144508.017720:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 105 to 120
+[5634:15:0510/144508.017907:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 111 to 119
+[5541:5541:0510/144509.178515:INFO:CONSOLE(104)] "Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2", source: https://www.gstatic.com/recaptcha/releases/npGaewopg1UaB8CNtYfx-y1j/recaptcha__en.js (104)
+[5541:5541:0510/144510.228578:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

@@ -1,0 +1,119 @@
+{%extends 'base.html'%}
+{%block title%}Search Flights{%endblock title%}
+
+
+{%block body%}
+{%for message in messages%}
+<div class="alert alert-primary" role="alert">{{message}}</div>
+{%endfor%}
+
+<form method="POST">
+{%csrf_token%}
+<div class="container-xxl" style="position:absolute;left:20%;top: 10%;">
+    FROM
+    <select class="form-select my-2" aria-label="From" name="FROM" id="FROM">
+            <option value="BDP">BHADRAPUR</option>
+            
+            <option value="BHR">BHARATPUR</option>
+            
+            <option value="BIR">BIRATNAGAR</option>
+            
+            <option value="BWA">BHAIRAHAWA</option>
+            
+            <option value="CCU">KOLKATA</option>
+            
+            <option value="DHI">DHANGADHI</option>
+            
+            <option value="JKR">JANAKPUR</option>
+            
+            <option value="KEP">NEPALGUNJ</option>
+            
+            <option value="KTM">KATHMANDU</option>
+            
+            <option value="MTN">MOUNTAIN</option>
+            
+            <option value="PKR">POKHARA</option>
+            
+            <option value="RJB">RAJBIRAJ</option>
+            
+            <option value="SIF">SIMARA</option>
+            
+            <option value="SKH">SURKHET</option>
+            
+            <option value="TMI">TUMLINGTAR</option>
+    </select>
+    TO
+    <select class="form-select my-2" aria-label="To" name="TO" id="TO">
+            <option value="BDP">BHADRAPUR</option>
+            
+            <option value="BHR">BHARATPUR</option>
+            
+            <option value="BIR">BIRATNAGAR</option>
+            
+            <option value="BWA">BHAIRAHAWA</option>
+            
+            <option value="CCU">KOLKATA</option>
+            
+            <option value="DHI">DHANGADHI</option>
+            
+            <option value="JKR">JANAKPUR</option>
+            
+            <option value="KEP">NEPALGUNJ</option>
+            
+            <option value="KTM">KATHMANDU</option>
+            
+            <option value="MTN">MOUNTAIN</option>
+            
+            <option value="PKR">POKHARA</option>
+            
+            <option value="RJB">RAJBIRAJ</option>
+            
+            <option value="SIF">SIMARA</option>
+            
+            <option value="SKH">SURKHET</option>
+            
+            <option value="TMI">TUMLINGTAR</option>
+    </select>
+    Number of passengers
+    <select class="form-select my-2" aria-label="To" name="Number" id="Number">
+        <option value="1">1</option>
+        
+        <option value="2">2</option>
+        
+        <option value="3">3</option>
+        
+        <option value="4">4</option>
+        
+        <option value="5">5</option>
+        
+        <option value="6">6</option>
+        
+        <option value="7">7</option>
+        
+        <option value="8">8</option>
+        
+        <option value="9">9</option>
+        
+        <option value="10">10</option>
+        
+</select>
+    DATE
+    <input type="date" name="DATE" id="DATE" class="form-select my-2">
+    <button type="submit" class="btn btn-outline-success my-4"style="posiion:absolute;left:40%;">Search</button>
+</div>
+
+<!-- {{minimum_date}} -->
+<script>
+    document.getElementById('FROM').value="{{FROM}}"
+    document.getElementById('TO').value="{{TO}}"
+    document.getElementById('DATE').value="{{default_date}}"
+    document.getElementById('Number').value="{{demanded}}"
+
+</script>
+
+{%block table%}
+{%endblock table%}
+
+
+</form>
+{%endblock body%}

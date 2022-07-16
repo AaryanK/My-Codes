@@ -1,0 +1,28 @@
+{% if {active} == 'home' %}
+    <li class='nav__links-active'>
+{{%else%}}
+    <li class='nav__links'>
+{{% endif %}}
+<a href="/">Home</a>
+</li>
+{% if {active} == 'about' %}
+    <li class='nav__links-active'>
+{{%else%}}
+    <li class='nav__links'>
+{{% endif %}}
+    <a href="/about">About</a>
+</li>
+{% if {active} == 'services' %}
+    <li class='nav__links-active'>
+{{%else%}}
+    <li class='nav__links'>
+{{% endif %}}
+    <a href="/services">Services</a>
+</li>
+{% if {active} == 'Contact Us' %}
+    <li class='nav__links-active'>
+{{%else%}}
+    <li class='nav__links'>
+{{% endif %}}
+    <a href="/Contact_Us">Contact Us</a>
+</li>

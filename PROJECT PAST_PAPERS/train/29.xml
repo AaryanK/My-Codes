@@ -1,0 +1,26 @@
+<annotation>
+	<folder>papers</folder>
+	<filename>29.jpg</filename>
+	<path>C:\My Codes\Python\PROJECT PAST_PAPERS\papers\29.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1654</width>
+		<height>2339</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>question</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>8</xmin>
+			<ymin>401</ymin>
+			<xmax>1654</xmax>
+			<ymax>2152</ymax>
+		</bndbox>
+	</object>
+</annotation>

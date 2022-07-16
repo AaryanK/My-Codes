@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+.navbar-brand{
+  font-family: squada one;
+}
+
+
+
+.nav-header{
+  color: white;
+}
+.Navabar-main{
+
+}
+
+.so{
+  font-family: squada one;
+}
+.Navabar-main .navbar-brand{
+  font-size: 40px
+}
+
+.active{
+    font-family: Squada one;
+    font-size: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.active:hover{
+  border-style: solid;
+  border-radius: 50px;
+}

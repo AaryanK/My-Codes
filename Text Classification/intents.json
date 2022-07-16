@@ -1,0 +1,16 @@
+{
+  "intents"  :[
+      {
+          "tag":"greeting",
+          "patterns":["hi","hello","hey","good morning","good afternoon","good evening","good night","whats up"]
+      },
+      {
+          "tag":"name",
+          "patterns":["who are you","what is your name","who am i talking to","who is this","what am i talking to","what is this"]
+      },
+      {
+        "tag":"hours",
+        "patterns":["office kati bajey samma khulxa?","what are your hours?","aja hajur haru khulla ho?","kaile bata office khulla?","what am i talking to","what is this"]
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+from bs4 import BeautifulSoup
+import requests
+from requests_html import HTMLSession
+
+
+
+class AirlineWebsite():
+    def __init__(self,base_url):
+        self.BASE_URL = base_url
+        self.session = requests.Session()
+        self.HTMLsession = HTMLSession()
+
+    def get_cookies(self,session):
+        cookies = session.get(self.BASE_URL).cookies.get_dict()
+        return cookies
+
+    def base_login(self,response=False):
+        session= self.get_logged_in_session(response)
+        return session
+
+    def get_balance(self):
+        self.balance = self.check_balance_individually()
+        return self.balance
+
+    def search_flights(self,ddd,mmm,yyy,fromsector,tosector,passenger_count=1):
+        self.search_for_flights(ddd,mmm,yyy,fromsector,tosector)
+        json = self.get_flight_and_seats()
+        return json
+
+    # def book(self,ddd,mmm,yyy,fromsector,tosector,flight_number,classname,nop):
+        
+        
+    def book(self,ddd,mmm,yyy,fromsector,tosector,flight_number,classname,nop):
+        return self.individual_book(ddd,mmm,yyy,fromsector,tosector,flight_number,classname,nop)
+
+
+
+from http import cookies
+import bs4
+import requests
+# from .base import AirlineWebsite
+
+
+
+class YetiAir(AirlineWebsite):
+    def __init__(self):
+        base_url = "http://res.yetiairlines.com/b2b/"
+        super().__init__(base_url)
+        self.cookies=self.get_cookies(self.session)
+
+    def login(self):
+        cookies = self.cookies
+        headers = {
+            'Connection': 'keep-alive',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': '*/*',
+            'Origin': 'http://res.yetiairlines.com',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        data = '{"userName":"antu","PassWord":"Aaryan330599","companyname":"antu"}'
+
+        session = requests.Session()
+        response = session.post('http://res.yetiairlines.com/b2b/WebService/BaseService.asmx/UserLogOn', headers=headers, cookies=cookies, data=data, verify=False)
+        
+
+        headers = {
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        response = session.get('http://res.yetiairlines.com/b2b/', headers=headers, cookies=cookies, verify=False)
+
+        return session
+    def asr_login(self):
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Cache-Control': 'max-age=0',
+            'Connection': 'keep-alive',
+            # Requests sorts cookies= alphabetically
+            # 'Cookie': '_fbp=fb.1.1637678224640.1500946324; _ga=GA1.2.1762368887.1637678226; ASP.NET_SessionId=5z12zu55dum3hnyakaf35m4s; _gid=GA1.2.830931933.1653594419',
+            'Origin': 'https://asr.yetiairlines.com',
+            'Referer': 'https://asr.yetiairlines.com/',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.53',
+            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="101", "Microsoft Edge";v="101"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+        }
+
+        data = {
+            'AgencyCode': 'antu',
+            'Username': 'antu',
+            'Password': 'Aaryan330599',
+        }
+        self.asr_session = requests.session()
+
+        response = self.asr_session.post('https://asr.yetiairlines.com/',headers=headers, data=data)
+        self.asr_cookies = self.asr_session.cookies.get_dict()
+
+    def get_logged_in_session(self,response=False):
+        log_1 = self.login()
+        self.asr_login()
+        self.session = log_1
+
+
+    def search_for_flights(self,ddd,mmm,yyy,fromsector,tosector,passenger_count=1):
+        session = self.session
+        cookies = cookies = {
+                    'ASP.NET_SessionId': 'xwktbbyturyeoc45g2duoz45',
+                }
+        yy= yyy
+        mm=mmm
+        MONTHS = {"01":"JAN","02":"FEB","03":"MAR","04":"APR","05":"MAY","06":"JUN","07":"JUL","08":"AUG","09":"SEP","10":"OCT","11":"NOV","12":"DEC"}
+        for i in MONTHS:
+            if MONTHS[i] == mm:
+                mm = i
+        dd = ddd
+        headers = {
+            'Connection': 'keep-alive',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': '*/*',
+            'Origin': 'http://res.yetiairlines.com',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        data = '{"fromAirport":"KTM","toAirport":"BDP","dateFrom":"20211005","dateTo":"","iAdult":"1","iChild":"0","iInfant":"0","BDClass":"","isSearchGroup":"0","FareSelect":"","dayRange":"0","transit_flag":"false","direct_flag":"true","require_passenger_title_flag":"false","require_passenger_gender_flag":"false","require_date_of_birth_flag":"true","require_document_details_flag":"true","require_passenger_weight_flag":"false","OriginName":"Kathmandu","DestinationName":"Bhadrapur","show_redress_number_flag":"true","special_service_fee_flag":"true","currency":"NPR","bNoVat":false,"strPromoCode":"","strIPAddress":"","iOther":0,"otherPassengerTypeCode":""}'
+        import json
+        data = json.loads(data)
+        data["toAirport"]=tosector
+        data["fromAirport"]=fromsector
+        data["dateFrom"]=f"{yy}{mm}{dd}"
+        data["iAdult"]=passenger_count
+        data = json.dumps(data)
+        response = session.post('http://res.yetiairlines.com/b2b/WebService/BaseService.asmx/getFlightAvailabilityFormMultiCurrency', headers=headers, cookies=cookies, data=data, verify=False)
+        headers = {
+            'Connection': 'keep-alive',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': '*/*',
+            'Origin': 'http://res.yetiairlines.com',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        data = '{"move":"next"}'
+
+        response = session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/GetNextWorkFlowStep', headers=headers, cookies=cookies, data=data, verify=False)
+
+        headers = {
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        response = session.get('http://res.yetiairlines.com/b2b/', headers=headers, cookies=cookies, verify=False)
+        soup = bs4.BeautifulSoup(response.content,'html.parser')
+        self.soup = soup
+        self.js = {}
+        self.flights={}
+        return response.content
+        
+
+    def get_flight_and_seats(self,fare="NPR"):
+        table = self.soup.find(id="tabOutward")
+        trs = table.find_all(['tr','tbody'])
+        trs = trs[:-1]
+        trs=trs[1:]
+        flight_name = ""
+        new_list = []
+        for i in trs:
+            td = i.find_all("td")
+            if "YT" in td[0].get_text():
+                flight_name = td[0]
+                new_list.append(td)
+            else:
+                td[0]=flight_name
+                new_list.append(td)
+        self.flights_list=[]
+        for i in new_list:
+            fare = i[8].get_text()
+            fare = fare.split(",")
+            fare = fare[0]+fare[1]
+            fare = fare.split(".")
+            if int(fare[1])>1:
+                fare = int(fare[0])+1
+            else:
+                fare = fare[0]
+            dict = {"Flight no.":f"{i[0].get_text()[0:2]} {i[0].get_text()[26:29]}","Class":i[6].get_text(),"Time":i[3].get_text(),"Maximum_Seats":i[7].get_text(),"Unit_Price":fare}
+            self.flights_list.append(dict)
+        self.flights_list={"Yeti Airlines":self.flights_list}
+        return self.flights_list
+    
+    def individual_book(self,ddd,mmm,yyy,fromsector,tosector,nop,flight_number,classname,passengers):
+        json_data = {
+        'OutwardFlightFareId': '{2D4A8617-C6EA-4DF4-BAE8-EA6F39D47734}|{1DE15B09-2510-4DA8-BC58-D50C4ED5CC0E}|||2022-05-16T00:00:00|1330|1400',
+        'ReturnFlightFareID': '',
+        'OutWardDateFligh': '20220416_13_30',
+        'OutSelectType': 'FIRM',
+        'RetSelectType': 'FIRM',
+        }
+
+        headers = {
+                    'Accept': '*/*',
+                    'Accept-Language': 'en-US,en;q=0.9',
+                    'Connection': 'keep-alive',
+                    'Content-Type': 'application/json; charset=UTF-8',
+                    # Requests sorts cookies= alphabetically
+                    # 'Cookie': 'ASP.NET_SessionId=oed5j245cwf54r45azvuft45; _fbp=fb.1.1637678224640.1500946324; _ga=GA1.2.1762368887.1637678226; _gid=GA1.2.1825027642.1652599067',
+                    'Origin': 'http://res.yetiairlines.com',
+                    'Referer': 'http://res.yetiairlines.com/b2b/',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47',
+                }
+        
+        self.search_for_flights(ddd,mmm,yyy,fromsector,tosector,passenger_count=nop)
+        table = self.soup.find(id="tabOutward")
+        # print(table)
+        trs = table.find_all(['tr','tbody'])
+        trs = trs[:-1]
+        trs=trs[1:]
+        flight_name = ""
+        new_list = []
+        for i in trs:
+            td = i.find_all("td")
+            if "YT" in td[0].get_text():
+                flight_name = td[0]
+                new_list.append(td)
+            else:
+                td[0]=flight_name
+                new_list.append(td)
+        for i in new_list:
+            if flight_number == f"{i[0].get_text()[0:2]} {i[0].get_text()[26:29]}" and classname == i[6].get_text():
+                json_data['OutwardFlightFareId'] = i[-2].find("input")["value"]
+                json_data['OutWardDateFligh'] = self.date+"_"+i[3].get_text()[:2]+"_"+i[3].get_text()[3:5]
+
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/BaseService.asmx/GetSelectFlight', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+                json_data = {
+                    'move': 'next',
+                }
+
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/GetNextWorkFlowStep', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/loadstep4', cookies=self.cookies, headers=headers, verify=False)                    
+                response = self.session.get(self.BASE_URL,cookies=self.cookies)
+                json_data = {
+                        'passengerXml': '<Passengers><Passenger><passenger_id>d0f69614-c6d7-4da9-b147-96c61c1e5f17</passenger_id><client_number></client_number><client_profile_id>00000000-0000-0000-0000-000000000000</client_profile_id><passenger_profile_id>00000000-0000-0000-0000-000000000000</passenger_profile_id><passenger_type_rcd>ADULT</passenger_type_rcd><employee_number></employee_number><title_rcd>MR|M</title_rcd><lastname>A</lastname><firstname>B</firstname><middlename></middlename><nation>NP</nation><documenttype></documenttype><documentnumber></documentnumber><issueplace></issueplace><issuedate></issuedate><expireddate></expireddate><DOB></DOB><company_phone_business></company_phone_business><company_phone_mobile></company_phone_mobile><company_phone_home></company_phone_home><contact_name></contact_name><passport_birth_place></passport_birth_place><passenger_weight>0</passenger_weight><wheelchair_flag>0</wheelchair_flag><vip_flag>0</vip_flag><window_seat_flag>0</window_seat_flag><address_line1></address_line1><address_line2></address_line2><street></street><province></province><city></city><zip_code></zip_code><po_box></po_box><country_rcd></country_rcd></Passenger></Passengers>',
+                        'Remark': '',
+                        'Remark2': '',
+                        'strContact': '<contact><ContactPerson>ANTUHILL TRAVEL  AND  TOURS</ContactPerson><HomePhone></HomePhone><Email>antutravel@gmail.com</Email><MobilePhone>01-4238057/ 01-4215126/01-4263957/9851189900</MobilePhone><BusinessPhone></BusinessPhone><Language>EN</Language><GroupName></GroupName><CostCenter></CostCenter><PurchaseOrder></PurchaseOrder><ProjectNumber></ProjectNumber></contact>',
+                        'xmlMailList': '',
+                    }
+                json_data['passengerXml'] = self.get_passenger_xml(response,nop=nop,passengers=passengers)
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/savestep4', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+
+                json_data = {
+                    'move': 'next',
+                }
+
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/GetNextWorkFlowStep', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+                response = requests.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/loadssr', cookies=self.cookies, headers=headers, verify=False)
+                response = self.session.get(self.BASE_URL,cookies=self.cookies)
+                json_data = {
+                    'ssrxml': '<Serices><Service><passenger_id>null</passenger_id><fee_id>00000000-0000-0000-0000-000000000000</fee_id><fee_rcd>null</fee_rcd><service_name>null</service_name><fee_amount_incl>null</fee_amount_incl><service_on_request_flag>null</service_on_request_flag><flight_id>null</flight_id></Service></Serices>',
+                }
+
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/savessrstep', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+
+                json_data = {
+                    'move': 'next',
+                }
+
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/GetNextWorkFlowStep', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/loadstep5', cookies=self.cookies, headers=headers, verify=False)
+                response = self.session.get(self.BASE_URL,cookies=self.cookies)
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/UtilService.asmx/loadstep5PostPaid', cookies=self.cookies, headers=headers, verify=False)
+                response = self.session.post('http://res.yetiairlines.com/b2b/WebService/Payment.asmx/Paylater', cookies=self.cookies, headers=headers, verify=False)
+                response = self.session.get(self.BASE_URL,cookies=self.cookies)
+                soup = BeautifulSoup(response.content.decode(),'lxml')
+                json = {}
+                json["STATUS"] = "Success"
+                json["AIRLINE"] = "Yeti Air"
+                json['PNR'] = soup.find(attrs={'class':'BookingRefItenerary'}).get_text().split("Booking Details:")[1].split()[0]
+                json['FLIGHT_DATE_TIME']={}
+                json['BOOKING_EXPIRY']={}
+                json['FLIGHT_DATE_TIME']['DATE'],json['FLIGHT_DATE_TIME']['TIME'] =soup.find(attrs={'class':'TBLYourItinerary'}).find("td",attrs={'class':"BodyCOL4"}).get_text(),soup.find(attrs={'class':'TBLYourItinerary'}).find("td",attrs={'class':"BodyCOL5"}).get_text() 
+                raw_date_time = soup.find(attrs={'class':'Itinerary-Pay'}).get_text().split("Please pay within                 ")[1]
+                json['BOOKING_EXPIRY']['DATE'],json['BOOKING_EXPIRY']['TIME']= raw_date_time.split()[0],raw_date_time.split()[1]
+                json["FLIGHT_NUMBER"] = flight_number 
+                json['CLASS']=classname 
+                json['UNIT_PRICE'] = soup.find(attrs={'class':'TBLTikets'}).find_all("td",attrs={'class':'BodyCOL6'})[0].get_text()
+                return json
+    
+    def get_data_from_ticket_number(self,ticketnumber):
+        headers = {
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.38',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Referer': 'http://res.yetiairlines.com/b2b/',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+
+        response = self.session.get('http://res.yetiairlines.com/b2b/', headers=headers, cookies=self.cookies, verify=False)
+        json_data = {
+            'isBack': 'false',
+        }
+
+        response = self.session.post('http://res.yetiairlines.com/b2b/WebService/ReportService.asmx/LoadBookingReport', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+
+        json_data = {
+            'PagePerRows': '25',
+            'selectpage': '0',
+            'includepageing': True,
+            'xslfile': '/XSL/Reports/BookingReport.xsl',
+            'ReportFrom': '',
+            'ReportTo': '',
+            'FlightFrom': '',
+            'FlightTo': '',
+            'Origin': '',
+            'Destination': '',
+            'Agency': '',
+            'Airline': '',
+            'Flight': '',
+            'passenger': '',
+            'bookingRef': '',
+            'ticketNumber': f'{ticketnumber}',
+        }
+
+        response = self.session.post('http://res.yetiairlines.com/b2b/WebService/ReportService.asmx/GetBookings', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+        # response = self.session.get('http://res.yetiairlines.com/b2b/', headers=headers, cookies=self.cookies, verify=False)
+        
+        soup = bs4.BeautifulSoup(response.json()['d'],'lxml')
+        booking_id = soup.find(attrs={'class':'BodyCOL2'}).find('a')['href'].split()[0].split('javascript:LoadBookingDetail')[1].replace("(","").replace(")","").replace("'","").split(",")[0]
+
+        json_data = {
+            'bookingid': f'{booking_id}',
+            'origin': '',
+            'destination': '',
+            'reportFrom': 'dd/mm/yyyy',
+            'reportTo': 'dd/mm/yyyy',
+            'reportName': 'BookingReport',
+            'formOfPayment': '',
+            'formOfPaymentSubtype': '',
+            'Drill': '',
+            'strflightdatefrom': 'dd/mm/yyyy',
+            'strflightdateto': 'dd/mm/yyyy',
+            'Airline': '',
+            'FlightNumber': '',
+            'strPassengerName': '',
+            'strbookingReference': '',
+            'strtickerNumber': f'{ticketnumber}',
+            'page': 1,
+        }
+
+        response = self.session.post('http://res.yetiairlines.com/b2b/WebService/ReportService.asmx/LoadBookingDetail', cookies=self.cookies, headers=headers, json=json_data, verify=False)
+        soup = bs4.BeautifulSoup(response.json()['d'],'lxml')
+        return soup.find(attrs={'class':'TBLYourItinerary'}).find(attrs={'class':'BodyCOL1'}).get_text(),soup.find(attrs={'class':'TBLYourItinerary'}).find(attrs={'class':'BodyCOL5'}).get_text()
+
+    def update_data(self,last_date):
+        import datetime
+        x = datetime.datetime.now()
+        date_to = x.strftime("%Y")+"-"+x.strftime("%m").upper()+"-"+x.strftime("%d")
+        response = self.asr_session.get('https://asr.yetiairlines.com/Dashboard', cookies=self.asr_cookies)
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Connection': 'keep-alive',
+            # Requests sorts cookies= alphabetically
+            # 'Cookie': '_fbp=fb.1.1637678224640.1500946324; _ga=GA1.2.1762368887.1637678226; ASP.NET_SessionId=5z12zu55dum3hnyakaf35m4s; _gid=GA1.2.830931933.1653594419',
+            'Referer': 'https://asr.yetiairlines.com/Dashboard',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.53',
+            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="101", "Microsoft Edge";v="101"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+        }
+
+        params = {
+            'fromDate': last_date,
+            'toDate': date_to,
+            'btnRunReport': 'Run Report',
+        }
+
+        response = self.asr_session.get('https://asr.yetiairlines.com/Dashboard', params=params, cookies=self.asr_cookies, headers=headers)
+        file=response.content.decode()
+        # print(file)
+        soup = bs4.BeautifulSoup(file,'lxml')
+
+
+        tables = soup.find_all("table",attrs={'class':'table table-bordered'})
+        
+        sales_table = tables[0]
+
+        sales = sales_table.find_all("tr")[1:]
+
+
+
+        # sales = sal
+
+        # # def flip_name(name):
+        # #     text = name.split("/")
+        # #     return text
+
+        # # a = BuddhaAir()
+        # # s = a.get_html_logged_in_session()
+        # def date_standarize_issue(date):
+        #     a=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+        #     dd = date[:2]
+        #     mm = str(a.index(date[3:6].upper())+1)
+        #     yy = date[7:9]
+        #     return yy+"-"+mm+"-"+dd
+
+
+        # #Data sent from 7000:
+        # print(len(sales))
+        tickets = []
+        for i in sales[1:-1]:
+            td = i.find_all("td")
+            # for count,i in enumerate(td):
+            #     print(count,i)
+        #     # data = a.search_name_from_ticket(a.search_pnr_by_ticket_number(td[1].get_text()),td[1].get_text())
+        #     # print(data)
+            if str(td[4].get_text().strip()) =="ADL":
+                p_type="Adult"
+            elif str(td[4].get_text().strip()) =="CHD":
+                p_type="Child"
+            if str(td[9].get_text())=="NPR":
+                nationality = "Nepali"
+            else:
+                nationality="Foreign"
+            
+            js = {
+                'ticket_number':td[1].get_text(),
+                'pnr':td[2].get_text(),
+                'name':td[3].get_text(),
+                'p_type':p_type,
+                'nationality':nationality,
+                'issuedate':td[5].get_text().strip(),
+                'flightdate':td[6].get_text().strip(),
+                'sector':td[7].get_text(),
+                'className':td[8].get_text(),
+                'commission':str(float(td[13].get_text())),
+                'fare':str(float(td[13].get_text())+float(td[14].get_text()))
+
+            }
+            
+            tickets.append(js)
+        return tickets
+
+a = YetiAir()
+a.get_logged_in_session()
+tickets = a.update_data("2022-05-01")
+
+for i in tickets:
+    print(a.get_flight_time(i['ticket_number']))

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<section class="container mx-auto p-6 font-mono">
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-4 py-3">Order Number</th>
+            <th class="px-4 py-3">Phone Number</th>
+            <th class="px-4 py-3">Place</th>
+            <th class="px-4 py-3">Status</th>
+            <th class="px-4 py-3">Date of Order</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          {%for order in orders%}
+          <tr class="text-gray-700">
+            <td class="px-4 py-3 text-ms font-semibold border">{{order.order_number}}</td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{order.phone_number}}</td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{order.place}}</td>
+            <td class="px-4 py-3 text-xs border">
+              {% if order.status == "pending" %}
+              <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-sm">{{order.status}}
+              {% elif order.status == "delivered" %}
+              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{order.status}}
+              {%else%}
+              <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm">{{order.status}}
+              {% endif %}
+              
+              </span>
+            </td>
+            <td class="px-4 py-3 text-sm border">11/8/2021</td>
+          </tr>
+          {%endfor%}
+          
+          
+        
+              {% comment %} <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Nnacceptable </span> {% endcomment %}
+            
+         
+              {% comment %} <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-sm"> Pending </span> {% endcomment %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

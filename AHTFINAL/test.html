@@ -1,0 +1,470 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=Edge" /><title>
+	Welcome To Yeti
+</title><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+      <script language="javascript" src="Scripts/GlobalSetup.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/uxPage.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/utilpage.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/SeatScript.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/uxCalendar.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/searchAvail.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/MaintainProfile.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/Step5.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/AvailabilityPrice.js" type="text/javascript"></script>    
+    <script language="javascript" src="Scripts/Validate.js" type="text/javascript"></script>   
+     
+    <script language="javascript" src="Scripts/Report.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/PassengerDetail.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/JSON.js" type="text/javascript"></script>
+
+    <!-- jQuery -->
+    <script language="javascript" src="Scripts/jQuery/jquery.min.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/jQuery/jquery.base64.min.js" type="text/javascript"></script>
+    <script language="javascript" src="Scripts/jQuery/jquery.placeholder.js" type="text/javascript"></script>
+     <script language="javascript" src="Scripts/jQuery/jquery.maskedinput-1.3.js" type="text/javascript"></script>
+    <!-- jQuery -->
+        
+    <!--Mark Edit-->    
+         <script language="javascript" src="Scripts/TextBox/Global.js" type="text/javascript"></script>   
+        <script language="javascript" src="Scripts/TextBox/Textbox.Restriction.js" type="text/javascript"></script>
+        <script language="javascript" src="Scripts/TextBox/Textbox.MaskEdit.js" type="text/javascript"></script>
+        <script language="javascript" src="Scripts/TextBox/Textbox.Trim.js" type="text/javascript"></script>
+        <script language="javascript" src="Scripts/TextBox/Textbox.Tip.js" type="text/javascript"></script>
+        <script language="javascript" src="Scripts/TextBox/AJAX.js" type="text/javascript"></script>
+     <!--Mark Edit--> 
+     <link type="image/x-icon" rel="shortcut icon" href="App_Themes/en-us/Images/favicon.ico" />
+
+     <style>
+     
+.Employee{clip:rect(0px 400px 300px 0px);POSITION: absolute;DISPLAY: block; text-align:center; padding:50px 0px 20px 0px; Z-INDEX:  9999; WIDTH: 70%;  TEXT-ALIGN: left;Z-INDEX: 6000;background-color:#d3f2ea;}
+</style>
+<link href="App_Themes/en-us/StyleSheets/Calendar.css" type="text/css" rel="stylesheet" /><link href="App_Themes/en-us/StyleSheets/pop_style.css" type="text/css" rel="stylesheet" /><link href="App_Themes/en-us/StyleSheets/style.css" type="text/css" rel="stylesheet" /><link href="/B2B/WebResource.axd?d=6fXEVbKE60sKUDUKYXSC2rDOurcXscHawtlKTmPKG132RiXtnfHYSEQmnKdc5HVIFmWWcQis13hctBA3oAjEkvP5b_VG4EchcxKUWotQ9mjEzgtoyILTyWeWmOT0qsnHNLOkNZB3BWwtk7yhmg1dAe_cTns1&amp;t=636289607020000000" type="text/css" rel="stylesheet" /></head>
+<body>
+<input type="hidden" id="hdText" value="Previous,Next" />
+
+<div id="dlgBox" style="display:none;"></div>
+
+<div id="dlgWait" style="display:none; Z-INDEX: 10000;">
+<div class="xouter">
+			<div class="xcontainer">
+				<div class="xinner LoadingBox">
+<div class="LoadingBoxHeader"></div>
+<div class="LoadingStep" id="dvMsgStep1" style="display:none;">Progress Message 1</div>
+<div class="LoadingStep" id="dvMsgStep2" style="display:none;">Progress Message 2</div>
+<div class="LoadingStep" id="dvMsgStep3" style="display:none;">Progress Message 3</div>
+<div class="LoadingStep" id="dvMsgStep4" style="display:none;">Progress Message 4</div>
+<div class="LoadingBoxMid"><img src="Images/progressbar.gif" width="269" height="34" /></div>
+<div class="LoadingBoxFoot"></div> 
+</div>
+</div>
+</div>
+</div>
+
+<div  id="tabWait" style="display:none;Z-INDEX: 10000; visibility:hidden;">
+<div class="xouter">
+			<div class="xcontainer">
+				<div class="xinner ProgressBarBox">
+<div class="ProgressBarHeaderTxt">
+Thank you for booking at Yeti </div>
+			<div class="ProgressBarAnimate"><img src="Images/progressbar.gif" width="269" height="34" /></div>
+			<div class="ProgressBarBodyTxt">Please wait while we process your booking or payment process.<br />
+			This will take approximately 1 minute and <br />
+			During this time you should not use any of the buttons on your browser.</div>	
+			
+		</div>
+        </div>
+        </div>
+        </div>
+<div id="dvDisable" style="display:none;" class="DisableWindow">
+</div>
+
+ <form name="aspnetForm" method="post" action="User.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="ctl00_ToolkitScriptManager1_HiddenField" id="ctl00_ToolkitScriptManager1_HiddenField" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEwMDUyNjYzMjgPZBYCZg9kFgICAQ9kFgQCAw9kFgJmD2QWMmYPFgIeB1Zpc2libGVnZAIBDxYCHwBoZAICDxYCHwBnZAIDDxYCHwBnZAIEDxYCHwBoZAIFDxYCHwBnZAIGDxYCHwBnZAIHDxYCHwBnZAIIDxYCHwBnZAIJDxYCHwBnZAIKDxYCHwBnZAILDxYCHwBnZAIMDxYCHwBnZAINDxYCHwBnZAIODxYCHwBoZAIPDxYCHwBnZAIQDxYCHwBnZAIRDxYCHwBnZAISDxYCHwBnZAITDxYCHwBnZAIUDxYCHwBnZAIVDxYCHwBoZAIWDxYCHwBoZAIXDxYCHwBoZAIYDxYCHwBnZAIED2QWAmYPFgIeBFRleHQFvgE8YSB0aXRsZT0iRW5nbGlzaCAoVW5pdGVkIFN0YXRlcykiICBocmVmPWphdmFzY3JpcHQ6Q2hhbmdlbGFuZygnZW4tdXMnKTs+PGltZyB0aXRsZT0iRW5nbGlzaCAoVW5pdGVkIFN0YXRlcykiIHNyYz0naHR0cDovL3Jlcy55ZXRpYWlybGluZXMuY29tL3dlbXMvaW1hZ2VzL2ZsYWdzL3VzLmdpZicgYm9yZGVyPTAgLz48L2E+Jm5ic3A7ZGR+g9wrpQ6Yb6epfg4vo2//ju4LqA==" />
+</div>
+
+
+<script src="/B2B/ScriptResource.axd?d=egS5DcE-KKmZnr4a3U-CZltWvfu1yav2CvRhhjj2BesCgNsuWE7bT7zNwuRSSbcL1DKQ6ZdRgsgrktuOlGitFNGGt74G7FZDUOmISm9paKr7Lh_cIAZpZ2EX8__q_plinXxa9Uo_MjX_pT4wa_LrR1gcVeA1&amp;t=3f4a792d" type="text/javascript"></script>
+<script src="/b2b/User.aspx?_TSM_HiddenField_=ctl00_ToolkitScriptManager1_HiddenField&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%2c+Version%3d1.0.11119.25707%2c+Culture%3dneutral%2c+PublicKeyToken%3d28f01b0e84b6d53e%3aen-US%3a080835fc-913f-4962-a5d1-a80a989988ba%3ae2e86ef9%3aa9a7729d%3a9ea3f0e2%3a9e8e87e9%3a1df13a87%3a4c9865be%3aba594826%3a507fcf1b%3ac7a4182e" type="text/javascript"></script>
+<script src="WebService/UtilService.asmx/js" type="text/javascript"></script>
+<script src="WebService/BaseService.asmx/js" type="text/javascript"></script>
+<script src="WebService/SeatService.asmx/js" type="text/javascript"></script>
+<script src="WebService/Payment.asmx/js" type="text/javascript"></script>
+<script src="WebService/ReportService.asmx/js" type="text/javascript"></script>
+<script src="WebService/WebUIRender.asmx/js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="369BBE8A" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWAgLUvYu/AwKJ9PqZD57apZQD6/YLDLsVIQvLHxndW0FN" />
+</div> 
+
+
+ 
+ <input type="hidden" style="width:0px;" id="hdEmail" name="email"/>
+ <input type="hidden" style="width:0px;" id="hdHomePhone" name="homephone"/>
+ <input type="hidden" style="width:0px;" id="hdBusinessPhone" name="businessphone"/>
+ <input type="hidden" id="action" name="action" />
+ <input type="hidden" id="prechange" name="prechange" />
+<input type="hidden" id="page" name="page" />
+<input type="hidden" id="hdDateFormat" name="hdDateFormat" value='dd/MM/yyyy' />
+<input type="hidden" id="hdPayVoucherMultipleForm" name="hdPayVoucherMultipleForm" value='' />
+<input type="hidden" id="hdStrongPassword" name="hdStrongPassword" value='' />
+
+
+    <div style="display:none;">
+        <input name="ctl00$hdd" type="text" id="ctl00_hdd" />             
+             
+     </div>
+     <div class="Wrapper">   
+       
+
+    <div class="ImgHeader" >
+		  <iframe  id='MenuIFrame' frameBorder='0' scrolling='no'></iframe>
+
+    <div class="HeaderMenu" >
+        
+<div class="menu">
+<ul id="nav">
+		<li>
+		     <a href="javascript:loadHome();" id="ctl00_Header1_Menu1_mHome" class="submenu">Home</a>
+		</li>
+		<li>
+		            
+		</li>
+		<li>
+              <a href="javascript:loadeditmaintainprofile('','false');" id="ctl00_Header1_Menu1_mUserProfile" class="submenu">My Profile</a>
+        </li>
+		
+		
+		
+		<li>
+	        <a id="ctl00_Header1_Menu1_mReport" class="submenu">Reports</a>
+	         
+	             <ul>
+                    
+
+                    <li id="ctl00_Header1_Menu1_mSearchActivityReport">
+                    <a href="Javascript:loadactivityreport();" >&nbsp;Activity Search&nbsp;</a></li>
+                    				 
+                    <li id="ctl00_Header1_Menu1_mIssuedTicketsReport">
+                    <a href="Javascript:loadticketsissuereport();" >&nbsp;Issued Tickets Report&nbsp;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mFlownTicketsReport">
+                    <a href="Javascript:loadFlownTicketsReport();" >&#160;Flown Tickets Report&#160;</a></li>
+                    	
+                    <li id="ctl00_Header1_Menu1_mRefundedTicketsReport">
+                    <a  href="Javascript:LoadRefundedTicketsReport();">&#160;Refunded Tickets Report&#160;</a></li> 
+                              
+                    <li id="ctl00_Header1_Menu1_mCancelledTicketsReport">
+                    <a  href="Javascript:LoadCancelledTicketsReport();">&#160;Cancelled Tickets Report&#160;</a></li>     
+
+                    <li id="ctl00_Header1_Menu1_mUnflownTicketsReport">
+                    <a  href="Javascript:LoadUnflownTicketsReport();">&#160;Unflown Tickets Report&#160;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mExpiredTicketsReport">
+                    <a  href="Javascript:LoadExpiredTicketsReport();">&#160;Expired Tickets Report&#160;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mFeesReport">
+                    <a   href="Javascript:LoadFeesReport();">&#160;Fees Report&#160;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mCashbookReport">
+                    <a  href="Javascript:LoadCashbookReport();">&#160;Cashbook Report&#160;</a></li>
+
+                    
+                    
+                    <li id="ctl00_Header1_Menu1_mSearchBookings">
+                    <a  href="Javascript:LoadBookingReport();">&#160;Search Bookings&#160;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mPendingPaymentReport">
+                    <a  href="Javascript:LoadPendingPaymentReport();">&#160;Pending Payment Report&#160;</a></li>
+
+                    <li id="ctl00_Header1_Menu1_mPendingRefundReport">
+                    <a  href="Javascript:LoadPendingRefundReport();">&#160;Pending Refund Report&#160;</a></li>
+                    <li id="ctl00_Header1_Menu1_mAgencyAccountTransactionsReport"><a  href="Javascript:LoadAgencyAccountTransactionsReport();">&#160;Agency Account Transactions Report&#160;</a></li> 
+		            <li id="ctl00_Header1_Menu1_mAgencyAccountTopUpReport"><a  href="Javascript:LoadAgencyAccountTopUpReport();">&#160;Agency Top Up Report&#160;</a></li> 
+		            <li id="ctl00_Header1_Menu1_mTravelAgencyTicketSales"><a  href="Javascript:LoadAgencyTicketSales();">&#160;Travel Agency Ticket Sales&#160;</a></li> 
+
+                </ul>
+		     
+		</li>
+		
+		<li >
+
+        </li>
+        <li>
+
+   
+        </li>			
+        <!-- Start Yai Add Account Topup -->		
+        
+        <!-- End Yai Add Account Topup -->
+	<li>
+		    <a href="Javascript:loadLogout();" id="ctl00_Header1_Menu1_mLogout" class="submenu">Logout</a> 
+
+		</li>
+		
+	</ul>
+		      
+	        
+</div>
+
+
+				
+				
+
+
+ 
+   </div>	
+   </div>			
+   <div class="clearboth"></div>          
+   <input type="hidden" id="userType" name="userType" value='Employee' />           
+   
+   
+            
+                    
+       
+
+<input type="hidden" id="hddlang" name="hddlang" value='' />
+ <div Class="Flags" style="display: none;" > 
+     <a title="English (United States)"  href=javascript:Changelang('en-us');><img title="English (United States)" src='http://res.yetiairlines.com/wems/images/flags/us.gif' border=0 /></a>&nbsp;    
+</div>
+     <script language=javascript>
+function Changelang(culname)
+{
+ var hdd = document.getElementById('hddlang');
+     hdd.value=culname;
+
+  var prechange = document.getElementById('prechange');
+      prechange.value="1";
+
+ document.forms[0].submit(); 
+}
+    </script>
+
+
+      <div class="Wrapper">
+		<!-- body -->
+		<!--Content-->
+		<div id="content" name="content"> 
+             
+      <input type=hidden id="hddtrip"  name="hddTrip" value='1' />
+
+	<div class="WrapperBody" >
+
+			   
+			   <div class="CoverDetailPopup">
+			     
+				<div class="buttonStepContent">Step 2, Availability and Price</div>
+								 <div class="UserLogin">Logon: &#160;ANTUHILLTRAVELSPVTLTD&#160;ANTUHILLTRAVELS</div>
+
+				<div class="clearboth"></div>				
+			  </div>
+			  <div id="dvGridFlight">
+			   <!-- Beging  AvailabilityPrice.xsl--><div class="WrapperTBLYourFlight" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><div class="TextFlight">Your flight options from <span class="TextFlightName"> (KTM)          <input type="hidden" id="hddOrg" name="hddOrg" value="KTM"></input></span>         To         <span class="TextFlightName"> (BDP)          <input type="hidden" id="hddDest" name="hddDest" value="BDP"></input></span></div></div><div class="clearboth" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></div><div class="WrapperTBLSelectNewFlight" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><div class="WarpperTimeIndication" id="time1"><div class="IconPM"><a href="javascript:" title="Morning (12am till 11am)"><img src="Images/icon_pm01.gif" border="0" alt="Morning (12am till 11am)" onclick="javascript:ShowByTime('morning','tabOutward',this,'time1', 20211007);" /></a></div><div class="IconAM"><a href="javascript:" title="Noon (10am till 05pm)"><img src="Images/icon_am01.gif" alt="Noon (10am till 05pm)" border="0" onclick=" javascript:ShowByTime('noon','tabOutward',this,'time1', 20211007);" /></a></div><div class="IconNN"><a href="javascript:" title="Evening (04pm till 12am)"><img src="Images/icon_nn01.gif" alt="Evening (04pm till 12am)" border="0" onclick=" javascript:ShowByTime('evening','tabOutward',this,'time1', 20211007);" /></a></div><div class="IconALL"><a href="javascript:" title="All flight time"><img src="Images/icon_all01.gif" alt="All flight time" border="0" onclick=" javascript:ShowByTime('all','tabOutward',this,'time1', 20211007);" /></a><input type="hidden" id="hdCTime" style="width:0px;" /></div><div id="imgLoad" style="display:none; position:absolute;" widht="100%" align="right"><img style="display: none;" src="images/loading.gif" border="0" /></div></div><div class="WrapperFlightDate"><div class="flighttime"><a href="javascript:getFlight('20211005','0')">05/10</a></div><div class="flighttime"><a href="javascript:getFlight('20211006','0')">06/10</a></div><div class="flighttimeSelect">07/10<input type="hidden" id="hddDateFrom" name="hddDateFrom" value="20211007"></input></div><div class="flighttime"><a href="javascript:getFlight('20211008','0')">08/10</a></div><div class="flighttime"><a href="javascript:getFlight('20211009','0')">09/10</a></div></div></div><div class="clearboth" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></div><table border="0" cellpadding="0" cellspacing="0" class="TBLYourFlight" id="tabOutward" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><tr><td class="HeadCOL1">Flight</td><td class="HeadCOL1">          AC        </td><td class="HeadCOL2">Date</td><td class="HeadCOL3">Departure</td><td class="HeadCOL4">Arrival</td><td class="HeadCOL5">Flight time</td><td class="HeadCOL6">Fare Code</td><td class="HeadCOL7">Seat</td><td class="HeadCOL8">          Total Fare          </td><td class="HeadCOL9">Firm</td><td class="HeadCOL10" style="display:none;">Waitlist</td></tr><tr id="1_1"><td class="BodyCOL1">YT                       921</td><td class="BodyCOL1">ATR72</td><td class="BodyCOL2">07/10/2021<input type="hidden" id="out_{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}" value="10:10" /></td><td class="BodyCOL3">10:10</td><td class="BodyCOL4">10:55</td><td class="BodyCOL5">00:45</td><td class="BodyCOL6">N</td><td class="BodyCOL7" align="center" style="background-color:#33ff99;  color:Black;">4</td><td class="BodyCOL8">9,530.00</td><td class="BodyCOL9" columnType="FIRM"><input type="radio" id="Rad_{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}" name="Rad_Out" value="{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}|{4A6247C3-7416-4125-97D7-781F30CE36E6}|||2021-10-07T00:00:00|1010|1055" checked=""></input></td><td class="BodyCOL10" columnType="WAITLIST" style="display:none;"></td></tr><tr id="tr_o_1_2"><td class="BodyCOL1"></td><td class="BodyCOL1">                                   </td><td class="BodyCOL2"><input type="hidden" id="out_{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}" value="10:10" /></td><td class="BodyCOL3">10:10</td><td class="BodyCOL4">10:55</td><td class="BodyCOL5">00:45</td><td class="BodyCOL6">RESIDENTIAL</td><td class="BodyCOL7" align="center" style="background-color:#33ff99;  color:Black;">4</td><td class="BodyCOL8">14,592.50</td><td class="BodyCOL9" columnType="FIRM"><input type="radio" id="Rad_{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}" name="Rad_Out" value="{DBBD7B7C-C1B8-4242-B0D6-F23FA17766EF}|{00D1180E-27BF-4041-BC6A-D696EFE2542B}|||2021-10-07T00:00:00|1010|1055"></input></td><td class="BodyCOL10" columnType="WAITLIST" style="display:none;"></td></tr><tr id="2_1"><td class="BodyCOL1">YT                       925</td><td class="BodyCOL1">ATR72</td><td class="BodyCOL2">07/10/2021<input type="hidden" id="out_{4457ECF8-8F78-41CA-9EB4-CA70CF907419}" value="14:30" /></td><td class="BodyCOL3">14:30</td><td class="BodyCOL4">15:15</td><td class="BodyCOL5">00:45</td><td class="BodyCOL6">N</td><td class="BodyCOL7" align="center" style="background-color:#33ff99;  color:Black;">4</td><td class="BodyCOL8">9,530.00</td><td class="BodyCOL9" columnType="FIRM"><input type="radio" id="Rad_{4457ECF8-8F78-41CA-9EB4-CA70CF907419}" name="Rad_Out" value="{4457ECF8-8F78-41CA-9EB4-CA70CF907419}|{4A6247C3-7416-4125-97D7-781F30CE36E6}|||2021-10-07T00:00:00|1430|1515"></input></td><td class="BodyCOL10" columnType="WAITLIST" style="display:none;"></td></tr><tr id="tr_o_2_2"><td class="BodyCOL1"></td><td class="BodyCOL1">                                   </td><td class="BodyCOL2"><input type="hidden" id="out_{4457ECF8-8F78-41CA-9EB4-CA70CF907419}" value="14:30" /></td><td class="BodyCOL3">14:30</td><td class="BodyCOL4">15:15</td><td class="BodyCOL5">00:45</td><td class="BodyCOL6">RESIDENTIAL</td><td class="BodyCOL7" align="center" style="background-color:#33ff99;  color:Black;">4</td><td class="BodyCOL8">14,592.50</td><td class="BodyCOL9" columnType="FIRM"><input type="radio" id="Rad_{4457ECF8-8F78-41CA-9EB4-CA70CF907419}" name="Rad_Out" value="{4457ECF8-8F78-41CA-9EB4-CA70CF907419}|{00D1180E-27BF-4041-BC6A-D696EFE2542B}|||2021-10-07T00:00:00|1430|1515"></input></td><td class="BodyCOL10" columnType="WAITLIST" style="display:none;"></td></tr><tr id="trError1"><td colspan="6" class="ErrorNoFlights" aligh="center"></td></tr></table><div class="clearboth" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></div><div class="clearboth" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></div><div class="ButtonBelow" xmlns:JCode="http://www.tiksystems.com/Printing" xmlns:Res="urn:Resources" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><div class="ButtonAlignLeft"><div class="buttonCornerLeft"></div><div class="buttonContent"><a href="javascript:loadHome();" title="Step Back">Back</a></div><div class="buttonCornerRight"></div></div><div class="ButtonAlignRight" id="btnNextSaveStep"><div class="buttonCornerLeft"></div><div class="buttonContent"><a href="javascript:selectFlight();" title="Step Next">Next</a></div><div class="buttonCornerRight"></div></div></div><!-- End  AvailabilityPrice.xsl-->
+			   </div>
+	
+</div> 
+	
+			<!-- end wrapper -->
+<div class="clearboth"></div>
+	
+  <script language=javascript>
+//    checkIsvalidFlight();
+//    HighlightSelectedFlight("Rad_Out","Outward");
+//    HighlightSelectedFlight("Rad_Ret","Return");
+  </script>
+
+   
+			 
+		</div>	
+		
+		<!-- Loading Bar-->
+		<div id="updateProgressDiv" class="updateProgress" style="display:none">
+            <div align="center" style="margin-top:13px;">
+                <img src="Images/Loading2.gif" />
+                <span class="updateProgressMessage">Loading ...</span>
+            </div>
+        </div>
+        <!--End Loading Bar-->
+
+        <!--Start Error Box-->
+		<div id="dvMessageBox" class="ErrorBox" style="display:none;" >
+			<div class="ErrorBoxHeader"></div>
+			<div class="ErrorBoxBg">
+			<div id="dvMessageIcon" class="ErrorBoxMid"></div>
+		    <div id="dvErrorMessage" class="ErrorBoxBot">
+		      Error Error Error Text Text Text Text Text Text Error Error Error Text Text Text Text Text 
+		    </div>
+	        <div class="clearboth"></div>
+	        <div class="ButtonError" onclick="ShowMessageBox('', 0,'');">
+                <div class="buttonCornerLeft"></div>
+                <div class="buttonContent" id="dvMessageButtonText">Closed</div>
+                <div class="buttonCornerRight"></div>
+            </div>
+			<div class="clearboth"></div>
+			</div>
+			<div class="ErrorBoxFooter"></div>
+        </div>
+        <!--End Error Box-->
+        <div id="backGroundDiv" style="display:none;"></div>
+        <div class="Footer">
+			<span class="CopyRight">© 2019 Yeti Airlines. All rights reserved.</span>
+			<span class="TradeMark">System by<a href="http://www.bravo.aero/" target="_blank">&#160;</a></span>
+		</div>
+    </div>      
+</div>		
+	    <input type='hidden' id='CheckInURL'  name='CheckInURL' value='http://res.yetiairlines.com/WebCheckin/default.aspx?webcheckin=' />
+	   <input type='hidden' id='COBURL'  name='COBURL' value='http://res.yetiairlines.com/COB/default.aspx?id=booking_id|user_profile_id' />
+	   <input type='hidden' id='CurrentDate'  name='CurrentDate' value='' />
+	   <input type='hidden' id='hddcurrency' name='hddcurrency' value='NPR' />
+      <input type='hidden' id='hddBookingID_OFF' name='hddBookingID_OFF' value='00000000-0000-0000-0000-000000000000' />
+      
+        
+        <input type='hidden' id='hddDateTimeMark' name='hddDateTimeMark' value='/' />  
+   <div id='hd_SessionExpireMessage' name='hd_SessionExpireMessage' style="display:none;"> 
+        Session has been expired. Please login again 
+    </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var msgKey =  new Array('alert_message_40', 'alert_message_49', 'alert_message_38', 'alert_message_131', 'alert_message_65', 'alert_message_138', 'alert_message_139', 'alert_message_87', 'alert_message_76', 'alert_message_47', 'alert_message_88', 'alert_message_36', 'alert_message_6', 'alert_message_48', 'alert_message_64', 'alert_message_2', 'alert_message_99', 'alert_message_24', 'alert_message_86', 'alert_message_75', 'alert_message_35', 'alert_message_98', 'alert_message_58', 'alert_message_85', 'alert_message_74', 'alert_message_23', 'alert_message_34', 'alert_message_41', 'alert_message_84', 'alert_message_44', 'alert_message_95', 'alert_message_55', 'alert_message_37', 'alert_message_94', 'alert_message_33', 'alert_message_54', 'alert_message_14', 'alert_message_102', 'alert_message_83', 'alert_message_43', 'alert_message_124', 'alert_message_127', 'alert_message_126', 'alert_message_121', 'alert_message_120', 'alert_message_123', 'alert_message_122', 'alert_message_62', 'alert_message_82', 'alert_message_45', 'alert_message_42', 'alert_message_104', 'alert_message_100', 'alert_message_93', 'alert_message_72', 'alert_message_53', 'alert_message_4', 'alert_message_115', 'alert_message_114', 'alert_message_111', 'alert_message_110', 'alert_message_113', 'alert_message_119', 'alert_message_118', 'alert_message_22', 'alert_message_13', 'alert_message_5', 'alert_message_92', 'alert_message_52', 'alert_message_105', 'alert_message_107', 'alert_message_106', 'alert_message_101', 'alert_message_103', 'alert_message_109', 'alert_message_108', 'booking_step_107', 'alert_message_12', 'alert_message_63', 'alert_message_91', 'alert_message_51', 'alert_message_46', 'alert_message_116', 'alert_message_112', 'alert_message_11', 'alert_message_73', 'alert_message_32', 'alert_message_140', 'alert_message_50', 'alert_message_10', 'alert_message_59', 'alert_message_61', 'alert_message_19', 'alert_message_66', 'alert_message_25', 'alert_message_21', 'alert_message_97', 'alert_message_57', 'alert_message_7', 'alert_message_17', 'alert_message_117', 'alert_message_60', 'alert_message_18', 'alert_message_20', 'alert_message_69', 'alert_message_125', 'alert_message_96', 'alert_message_3', 'alert_message_71', 'alert_message_29', 'alert_message_56', 'alert_message_31', 'alert_message_141', 'alert_message_8', 'alert_message_67', 'alert_message_90', 'alert_message_16', 'alert_message_27', 'alert_message_68', 'alert_message_70', 'alert_message_28', 'alert_message_30', 'alert_message_79', 'alert_message_15', 'alert_message_39', 'alert_message_9', 'alert_message_26', 'alert_message_80', 'alert_message_77', 'alert_message_1', 'alert_message_89', 'alert_message_78', 'alert_message_81');
+var msgValue =  new Array('No Booking', 'Fees Report not found', 'Selected Seat cannot be assigned to a CHILD Passenger!', 'Please enter a space between the first and last name of the cardholder', 'This Voucher Number has been exist.', 'Please supply a valid administrator name.', 'Age of adult should be between 12 - 120 years', 'Issue Date It must be in past at passenger', 'Please Supply valid contact Home phone', 'Unflown Tickets Report not found', 'Expiry Date It must be in future at passenger', 'Please supply a valid Date of Birth', 'Sorry, your account is on hold. For further information please contact our reservations office.', 'Expired Tickets Report not found', 'Can not save booking please contact Administrator.', 'Please supply a valid user name', 'Please enter a space between the first and last name of the cardholder.', 'Allow select undefined person(s) Please press clear button for select new employee.', 'Alert_Message_86', 'Please Supply valid contact Contact Person', 'Voucher amount not enough', 'Please supply a valid Title row', 'Please supply a valid province', 'Last Name and First Name has been exist', 'Passenger Type not match', 'Age of infant should between 0-23 month(s)', 'Invalid Voucher Number or Password', 'No Information', 'Total passengers must be less than #N', 'Flown Tickets Report not found', 'Invalid Security Code. !', 'Invalid username or password', 'Selected Seat cannot be assigned to a Passenger travelling with an INFANT!', 'Please supply a valid Security Code', 'Please supply a valid Password', 'Pending Refund Report not found', 'Please supply a valid User Name', 'Cancel', 'Incorrect Expiry Date (dd/mm/yyyy)', 'Issued Tickets Report not found', 'Incorrect Passengers Data', 'Please enter a space between the first and last name of the cardholder', 'We could not find any flights or seats available on the date selected', 'Can not find voucher', 'please check voucher condition', 'No booking found for this activity.', 'Travel Agency Ticket Sales report not found', 'Invalid Expired Date.', 'Incorrect Issue Date (dd/mm/yyyy)', 'Refunded Tickets Report not found', 'Not Found User', 'CreditCard type missmatch', 'Next', 'Please supply a valid Confirm ID KlikBCA', 'Can not edit route.', 'Pending Payment Report not found', 'Please supply a valid administrator name', 'Please select accept all Terms and Conditions associated with this Reservation.', 'CreditCard type missmatch', 'please check voucher condition', 'An error has occurred while processing your payment, please validate that all of the information you have provided is correct.', 'Please supply a valid CVV Number', 'Session has been expired.', 'This page will automatic close when the whole memory has been cleared', 'Age of child should between 2-11 years', 'Please supply a valid Department', 'User name already in use', 'Please supply a valid User ID KlikBCA', 'Booking Report not found', 'Please supply a valid Bank Name', 'Please supply a valid Account Number', 'Please supply a valid Bank Code', 'Previous', 'Change', 'Please input Firstname and Lastname with space in between.', 'Please supply a valid Account Holder', 'Your credit card will be debited card charges of', 'Please supply a valid Mobile Phone or Business Phone or Home Phone', 'For Flights departing within 4 hours please contact Reservations on 4464878', 'Cashbook Charge Report not found', 'Credit Card Approvals Report not found', 'Cancelled Tickets Report not found', 'Please select voucher.', 'Passenger name', 'Please supply a valid Email format', 'Can not edit profile.', 'Please supply a valid Voucher Number', 'Agency Account Transactions Report not found', 'Cashbook Report not found', 'Please supply a valid Lastname', 'Please supply a valid user name', 'Invalid CVC code', 'Please supply a valid Firstname row', 'Voucher has been cancel', 'Please accept Terms and Conditions', 'Incorrect date format (DD.MM.YYYY)', 'Birth Date Should be in the past row', 'Passwords must contain 9 alpha numeric characters and will be valid for a 90 day period. You will be prompted to reset your password prior to the expiration date. A follow up e mail will be sent to the address on file, confirming the details.', 'Your password has been reset and will be sent to your email address shortly.', 'It is not possible to book more Infants than Adults!', 'Sorry, no additional infants can be accepted for this flight. Please select another available flight or contact our call center.', 'Please supply a valid password', 'Sorry, there is no seat available forAA xxxPlease reselect other flight.', 'Please supply a valid Lastname row', 'Can not create route', 'Invalid client number', 'Confirm User ID Klik BCA mismatch.', 'Please supply a valid password', 'Please supply a valid B2C password.', 'Please supply a valid Town/City', '*Please select a User Name, then enter and confirm your personal password in these fields. Passwords must contain at least 9 alphanumeric characters. An e mail confirmation will be sent to the address on file once complete.', 'Please supply a valid Credit Card Number', 'Agency Top Up Report not found', 'Please supply a valid Employee number', 'Voucher has been expired', 'Cashbook Payments Report not found', 'You have selected no passengers.', 'Please supply a valid Credit Card Number', 'Can not create profile.', 'Please supply a valid B2E password.', 'Please supply a valid Address 1', 'Please supply a valid Postal Code', 'Incorect passenger type', 'Please check your return Date! It must be equal to or higher than the Departure Date.', 'No Flight', 'Please supply a valid Firstname', 'Please supply a valid Name On Card', 'Client Number Not Found', 'Please Supply valid contact Group Name', 'Please supply a valid agency name', 'Please Supply valid contact Document Number', 'Inccorrect Date', 'Incorrect Date of birth (dd.mm.yyyy)');
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+paxsetting = eval({"Summary":null,"Adult":null,"Other":null,"Child":null,"Infant":null});Sys.Application.initialize();
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.CalendarBehavior, {"firstDayOfWeek":1,"format":"dd/MM/yyyy","id":"ctl00_CalendarExtender1","selectedDate":"Fri, 12 Dec 2008 00:00:00 GMT"}, null, null, $get("ctl00_hdd"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>
+
+<script language="javascript">
+    function ParentScroll() {
+        scroll(0, 0);
+    }
+
+    function GetCurrency() {
+        var objval = document.getElementById("hddcurrency");
+        if (objval != null) { return objval.value; } else { return ""; }
+    }
+
+    function Get(key) {
+        var isfound = false;
+        var index = "";
+        for (var i = 0; i < msgKey.length && (!isfound); i++) {
+            if (key.toLowerCase() == msgKey[i].toLowerCase()) {
+                index = i;
+                isfound = true;
+            }
+        }
+        if (index.toString() == "") {
+            return key;
+        }
+        else {
+            return msgValue[parseInt(index)];
+        }
+    }
+
+    function GetAlert(key) {
+        var isfound = false;
+        var index = "";
+        for (var i = 0; i < msgKey.length && (!isfound); i++) {
+            if (key.toLowerCase() == msgKey[i].toLowerCase()) {
+                index = i;
+                isfound = true;
+            }
+        }
+        if (index.toString() == "") {
+            ShowMessageBox(key, 0, '');
+        }
+        else {
+            ShowMessageBox(msgValue[parseInt(index)], 0, '');
+        }
+    }
+
+    function GetMessage(key) {
+
+        var isfound = false;
+        var index = "";
+        for (var i = 0; i < msgKey.length && (!isfound); i++) {
+            if (key.toLowerCase() == msgKey[i].toLowerCase()) {
+                index = i;
+                isfound = true;
+            }
+        }
+        if (index.toString() == "") {
+            return (key);
+        }
+        else {
+            return (msgValue[parseInt(index)]);
+        }
+    }
+
+    function AngIFrameResize(h) {
+
+        var objIFrame = document.getElementById("frmCOB");
+        if (objIFrame != null) {
+            objIFrame.style.height = h;
+        }
+    }
+
+    var isClose = true;
+    var keycode = 0;
+
+    window.onunload = onUnloadHandler;
+    document.onkeydown = checkKeycode;
+
+    function checkKeycode(e) {
+
+        if (window.event)
+        { keycode = window.event.keyCode; }
+        else if (e)
+        { keycode = e.which; }
+        //Check F5
+        if (keycode == 116) {
+            isClose = false;
+        }
+
+    }
+
+    function onUnloadHandler() {
+
+        var prechange = document.getElementById('prechange');
+
+        if (document.getElementById("hddBookingID_OFF") != null) {
+            if (document.getElementById("hddBookingID_OFF").value != "") {
+
+                if ((keycode != 116)) {
+                    if (prechange.value != "1") {
+                        loadLogout();
+                        //window.location.href="Clean.aspx";
+                    }
+                }
+            }
+        }
+        if (document.getElementById("ctl00_ContentPlaceHolder1_hddBookingID_OFF") != null) {
+            if (document.getElementById("ctl00_ContentPlaceHolder1_hddBookingID_OFF").value != "") {
+
+                if ((keycode != 116)) {
+
+                    if (prechange.value != "1") {
+                        loadLogout();
+                        //window.location.href="Clean.aspx";
+                    }
+                }
+            }
+        }
+    }
+</script>

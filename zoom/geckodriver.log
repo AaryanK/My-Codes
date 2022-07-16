@@ -1,0 +1,72 @@
+1604898596089	geckodriver	INFO	Listening on 127.0.0.1:49793
+1604898596135	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletAO8GJ"
+Error: no DISPLAY environment variable specified
+1604898751738	geckodriver	INFO	Listening on 127.0.0.1:43127
+1604898751745	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1xTcDg"
+Error: no DISPLAY environment variable specified
+1604981856875	geckodriver	INFO	Listening on 127.0.0.1:56601
+1604981857867	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileQOdDZx"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604981883663	Marionette	INFO	Listening on port 36335
+1604981884117	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604981929879	Marionette	INFO	Stopped listening on port 36335
+1604990843885	geckodriver	INFO	Listening on 127.0.0.1:47079
+1604990844828	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileHLUwNn"
+Error: no DISPLAY environment variable specified
+1604991516941	geckodriver	INFO	Listening on 127.0.0.1:51215
+1604991518032	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewODjhA"
+Error: no DISPLAY environment variable specified
+1604991599502	geckodriver	INFO	Listening on 127.0.0.1:52251
+1604991599518	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileabhVYu"
+Error: no DISPLAY environment variable specified
+1604993314056	geckodriver	INFO	Listening on 127.0.0.1:49709
+1604993314249	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4G2534"
+Error: no DISPLAY environment variable specified
+1604993528466	geckodriver	INFO	Listening on 127.0.0.1:55849
+1604993528978	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilefyQLWq"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604993559117	Marionette	INFO	Listening on port 41591
+1604993559799	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604993578337	geckodriver	INFO	Listening on 127.0.0.1:44139
+1604993578640	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekwwax2"
+Error: no DISPLAY environment variable specified
+1604993703740	geckodriver	INFO	Listening on 127.0.0.1:59795
+1604993703952	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIa4s4N"
+Unable to init server: Broadway display type not supported: 0
+Error: cannot open display: 0
+1604993725633	geckodriver	INFO	Listening on 127.0.0.1:54071
+1604993725649	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilevJsCVs"
+Unable to init server: Broadway display type not supported: 1
+Error: cannot open display: 1
+1604993730828	geckodriver	INFO	Listening on 127.0.0.1:50649
+1604993730838	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileKZavc4"
+Unable to init server: Broadway display type not supported: 0
+Error: cannot open display: 0
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1605064163146	geckodriver	INFO	Listening on 127.0.0.1:57855
+1605064164128	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilerXvMPd"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605064187650	Marionette	INFO	Listening on port 46269
+1605064188115	Marionette	WARN	TLS certificate errors will be ignored for this session
+1605064270053	geckodriver	INFO	Listening on 127.0.0.1:51901
+1605064270147	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilejEDrZQ"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605064282926	Marionette	INFO	Listening on port 39287
+1605064283009	Marionette	WARN	TLS certificate errors will be ignored for this session
+1605064305286	Marionette	INFO	Stopped listening on port 39287
+1605064326261	geckodriver	INFO	Listening on 127.0.0.1:42547
+1605064326440	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileHiqdZ4"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605064335604	Marionette	INFO	Listening on port 41515
+1605064335711	Marionette	WARN	TLS certificate errors will be ignored for this session
+1605064534568	Marionette	INFO	Stopped listening on port 41515
+
+###!!! [Parent][RunMessage] Error: Channel error: cannot send/recv
+
+1605064740040	Marionette	INFO	Stopped listening on port 46269
+1606642736593	geckodriver	INFO	Listening on 127.0.0.1:54757
+1606642737554	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJlQq0C"
+Error: no DISPLAY environment variable specified

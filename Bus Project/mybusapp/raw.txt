@@ -1,0 +1,24 @@
+#:import MapView kivy.garden.mapview.MapView
+
+MapView:
+	lat :app.user_latitude
+	lon : app.user_longitude
+	zoom : 20
+	on_lat:
+		print('lat',self.lat)
+	on_lon:
+		print('lon',self.lon)
+	MapMarkerPopup:
+		source:"user_marker.png"
+		lat:app.user_latitude
+		lon:app.user_longitude 
+		MDLabel:
+			text:"Your location"
+
+	MapMarkerPopup:
+		source:"bus_marker.png"
+		lat:app.bus_latitude
+		lon:app.bus_longitude 
+		MDLabel:
+			text:"bus location"
+		
